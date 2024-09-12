@@ -5,3 +5,6 @@ tesseract
 tesseract-ocr
 opencv-python
 numpy
+transformers
+torch
+easyocr
