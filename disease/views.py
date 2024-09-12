@@ -113,25 +113,21 @@ PRODUCT_INGREDIENTS = {
 
 def check_product(request):
     if request.method == 'POST' and request.FILES.get('product_image'):
-        product_image = ProductImage(image=request.FILES['product_image'])
+        user = request.user
+        product_image = ProductImage(user=user, image=request.FILES['product_image'])
         product_image.save()
         image_path = default_storage.path(product_image.image.name)
         product_name = extract_product_name(image_path)
         print(product_name)
         product_name_formatted = product_name.title()
-    
-        # Get ingredients and percentages
         ingredients = PRODUCT_INGREDIENTS.get(product_name_formatted, {})
-        
         if ingredients:
             message = f"Warning: {product_name} contains sugar."
             ingredient_message = "Major ingredients and percentages: " + ', '.join([f"{ingredient}: {percentage}" for ingredient, percentage in ingredients.items()])
         else:
             message = f"{product_name} information not available."
             ingredient_message = "Ingredients information is not available."
-
         return render(request, 'disease/result.html', {'message': message, 'ingredients': ingredient_message})
-    
     return render(request, 'disease/upload.html')
 
 

@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import AuthenticationForm
 from django.views import View
 from .forms import UserRegistrationForm, UserLoginForm
 from django.contrib.auth import logout
+from disease.models import ProductImage
 
 def index_view(request):
     return render(request, 'index.html')
@@ -41,3 +41,8 @@ class UserLoginView(View):
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+
+def user_images(request):
+    images = ProductImage.objects.filter(user=request.user)
+    return render(request, 'users/scanned.html', {'images': images})

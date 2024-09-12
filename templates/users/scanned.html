@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Uploaded Images</title>
+</head>
+<body>
+    <h1>Your Uploaded Images</h1>
+    {% if images %}
+        <ul>
+            {% for image in images %}
+                <li>
+                    <img src="{{ image.image.url }}" alt="Product Image" width="200"/>
+                    <p>Uploaded at: {{ image.uploaded_at }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You haven't uploaded any images yet.</p>
+    {% endif %}
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>
