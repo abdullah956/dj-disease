@@ -1,1 +1,5 @@
 django
+pytesseract==0.3.13
+pillow
+tesseract
+tesseract-ocr
