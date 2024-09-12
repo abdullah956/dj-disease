@@ -1,10 +1,10 @@
 django
-pytesseract==0.3.13
-pillow
-tesseract
-tesseract-ocr
-opencv-python
-numpy
-transformers
-torch
 easyocr
+pillow
+x tesseract
+x tesseract-ocr
+x opencv-python
+x numpy
+x transformers
+x torch
+x pytesseract==0.3.13
