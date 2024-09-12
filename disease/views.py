@@ -51,84 +51,84 @@ from PIL import Image
 reader = easyocr.Reader(['en'])
 
 PRODUCT_INGREDIENTS = {
-    'Oreo': ['Sugar', 'Unbleached Flour', 'Palm and/or Canola Oil', 'Cocoa (Processed with Alkali)'],
-    'Hershey': ['Sugar', 'Milk', 'Cocoa Butter', 'Chocolate', 'Milk Fat'],
-    'Skittles': ['Sugar', 'Corn Syrup', 'Hydrogenated Palm Kernel Oil', 'Citric Acid'],
-    'Lay\'s': ['Potatoes', 'Vegetable Oil', 'Salt'],
-    'Doritos': ['Corn', 'Vegetable Oil', 'Cheese', 'Salt'],
-    'Cheetos': ['Cornmeal', 'Vegetable Oil', 'Cheese Flavor', 'Salt'],
-    'Pringles': ['Dehydrated Potato Flakes', 'Corn Starch', 'Vegetable Oil', 'Salt'],
-    'Ritz': ['Wheat Flour', 'Vegetable Oil', 'Sugar', 'Salt'],
-    'Goldfish': ['Wheat Flour', 'Cheddar Cheese', 'Vegetable Oil', 'Salt'],
-    'Cheez-Its': ['Wheat Flour', 'Cheddar Cheese', 'Vegetable Oil', 'Salt'],
-    'Combos': ['Pretzel', 'Cheese', 'Vegetable Oil', 'Salt'],
-    'SunChips': ['Whole Grain Corn', 'Whole Grain Wheat', 'Vegetable Oil', 'Salt'],
-    'Munchies': ['Cheese-flavored Snacks', 'Pretzels', 'Corn Chips', 'Vegetable Oil'],
-    'Bugles': ['Corn Meal', 'Vegetable Oil', 'Salt', 'Cheese Flavor'],
-    'Fritos': ['Corn', 'Vegetable Oil', 'Salt'],
-    'Tostitos': ['Corn', 'Vegetable Oil', 'Salt'],
-    'Cocoa Puffs': ['Corn Flour', 'Sugar', 'Cocoa', 'Salt'],
-    'Cap\'n Crunch': ['Corn Flour', 'Sugar', 'Oat Flour', 'Salt'],
-    'Pop-Tarts': ['Flour', 'Sugar', 'Corn Syrup', 'Vegetable Oil'],
-    'Nutri-Grain': ['Whole Grain Oats', 'Corn Syrup', 'Sugar', 'Fruit Filling'],
-    'Rice Krispies': ['Rice', 'Sugar', 'Salt', 'Malt Flavor'],
-    'Special K': ['Rice', 'Sugar', 'Wheat', 'Salt'],
-    'Cheerios': ['Whole Grain Oats', 'Corn Starch', 'Sugar', 'Salt'],
-    'Froot Loops': ['Corn Flour', 'Sugar', 'Oat Flour', 'Salt'],
-    'Lucky Charms': ['Corn Flour', 'Sugar', 'Oat Flour', 'Marshmallows'],
-    'Oatmeal Creme Pies': ['Oat Flour', 'Sugar', 'Vegetable Oil', 'Cream Filling'],
-    'Little Debbie': ['Sugar', 'Wheat Flour', 'Vegetable Oil', 'Chocolate'],
-    'HoHos': ['Cake', 'Cream Filling', 'Chocolate Coating', 'Sugar'],
-    'Swiss Rolls': ['Cake', 'Cream Filling', 'Chocolate Coating', 'Sugar'],
-    'Hostess Cupcakes': ['Cake', 'Cream Filling', 'Chocolate Frosting', 'Sugar'],
-    'Twinkies': ['Cake', 'Cream Filling', 'Vegetable Oil', 'Sugar'],
-    'Ring Dings': ['Cake', 'Chocolate Coating', 'Cream Filling', 'Sugar'],
-    'Moon Pies': ['Marshmallow', 'Graham Cracker', 'Chocolate Coating', 'Sugar'],
-    'Gushers': ['Fruit Puree', 'Corn Syrup', 'Sugar', 'Gelatin'],
-    'Fruit by the Foot': ['Fruit Puree', 'Corn Syrup', 'Sugar', 'Gelatin'],
-    'Airheads': ['Sugar', 'Corn Syrup', 'Hydrogenated Palm Kernel Oil', 'Flavorings'],
-    'Jolly Rancher': ['Sugar', 'Corn Syrup', 'Artificial Flavor', 'Colorings'],
-    'Laffy Taffy': ['Sugar', 'Corn Syrup', 'Palm Oil', 'Flavorings'],
-    'Smarties': ['Sugar', 'Dextrose', 'Citric Acid', 'Natural and Artificial Flavors'],
-    'Nerds': ['Sugar', 'Dextrose', 'Artificial Flavors', 'Colorings'],
-    'Starburst': ['Sugar', 'Corn Syrup', 'Hydrogenated Palm Kernel Oil', 'Fruit Juice'],
-    'Skittles': ['Sugar', 'Corn Syrup', 'Hydrogenated Palm Kernel Oil', 'Fruit Juice'],
-    'Twizzlers': ['Corn Syrup', 'Sugar', 'Wheat Flour', 'Palm Oil'],
-    'Red Vines': ['Sugar', 'Corn Syrup', 'Wheat Flour', 'Red Dye'],
-    'Haribo': ['Sugar', 'Glucose Syrup', 'Gelatin', 'Flavorings'],
-    'Gummy Bears': ['Sugar', 'Glucose Syrup', 'Gelatin', 'Flavorings'],
-    'Swedish Fish': ['Sugar', 'Corn Syrup', 'Artificial Flavors', 'Red Dye'],
-    'Pez': ['Sugar', 'Corn Syrup', 'Flavorings', 'Colorings'],
-    'Pocky': ['Wheat Flour', 'Sugar', 'Vegetable Oil', 'Chocolate'],
-    'KitKat': ['Wheat Flour', 'Sugar', 'Vegetable Oil', 'Chocolate'],
-    'Milky Way': ['Sugar', 'Milk Chocolate', 'Corn Syrup', 'Chocolate'],
-    'Mars': ['Sugar', 'Milk Chocolate', 'Corn Syrup', 'Vegetable Oil'],
-    'Snickers': ['Peanuts', 'Sugar', 'Milk Chocolate', 'Corn Syrup'],
-    'Reese\'s': ['Peanut Butter', 'Milk Chocolate', 'Sugar', 'Salt'],
-    'Butterfinger': ['Peanut Butter', 'Sugar', 'Corn Syrup', 'Chocolate'],
-    'Almond Joy': ['Almonds', 'Milk Chocolate', 'Coconut', 'Sugar'],
-    'Mounds': ['Coconut', 'Dark Chocolate', 'Sugar', 'Corn Syrup'],
-    'Fanta': ['Carbonated Water', 'High Fructose Corn Syrup', 'Natural Flavors', 'Citric Acid', 'Sodium Benzoate', 'Coloring'],
-}
+    'Oreo': {'Sugar': '36%', 'Unbleached Flour': '30%', 'Palm and/or Canola Oil': '20%', 'Cocoa (Processed with Alkali)': '14%'},
+    'Hershey': {'Sugar': '50%', 'Milk': '20%', 'Cocoa Butter': '15%', 'Chocolate': '10%', 'Milk Fat': '5%'},
+    'Skittles': {'Sugar': '50%', 'Corn Syrup': '20%', 'Hydrogenated Palm Kernel Oil': '15%', 'Citric Acid': '10%'},
+    'Lay\'s': {'Potatoes': '60%', 'Vegetable Oil': '30%', 'Salt': '10%'},
+    'Doritos': {'Corn': '50%', 'Vegetable Oil': '30%', 'Cheese': '15%', 'Salt': '5%'},
+    'Cheetos': {'Cornmeal': '60%', 'Vegetable Oil': '20%', 'Cheese Flavor': '15%', 'Salt': '5%'},
+    'Pringles': {'Dehydrated Potato Flakes': '50%', 'Corn Starch': '30%', 'Vegetable Oil': '15%', 'Salt': '5%'},
+    'Ritz': {'Wheat Flour': '60%', 'Vegetable Oil': '20%', 'Sugar': '15%', 'Salt': '5%'},
+    'Goldfish': {'Wheat Flour': '60%', 'Cheddar Cheese': '20%', 'Vegetable Oil': '15%', 'Salt': '5%'},
+    'Cheez-Its': {'Wheat Flour': '60%', 'Cheddar Cheese': '20%', 'Vegetable Oil': '15%', 'Salt': '5%'},
+    'Combos': {'Pretzel': '50%', 'Cheese': '30%', 'Vegetable Oil': '15%', 'Salt': '5%'},
+    'SunChips': {'Whole Grain Corn': '50%', 'Whole Grain Wheat': '30%', 'Vegetable Oil': '15%', 'Salt': '5%'},
+    'Munchies': {'Cheese-flavored Snacks': '40%', 'Pretzels': '30%', 'Corn Chips': '20%', 'Vegetable Oil': '10%'},
+    'Bugles': {'Corn Meal': '60%', 'Vegetable Oil': '20%', 'Salt': '10%', 'Cheese Flavor': '10%'},
+    'Fritos': {'Corn': '70%', 'Vegetable Oil': '20%', 'Salt': '10%'},
+    'Tostitos': {'Corn': '70%', 'Vegetable Oil': '20%', 'Salt': '10%'},
+    'Cocoa Puffs': {'Corn Flour': '50%', 'Sugar': '30%', 'Cocoa': '15%', 'Salt': '5%'},
+    'Cap\'n Crunch': {'Corn Flour': '50%', 'Sugar': '30%', 'Oat Flour': '15%', 'Salt': '5%'},
+    'Pop-Tarts': {'Flour': '50%', 'Sugar': '30%', 'Corn Syrup': '15%', 'Vegetable Oil': '5%'},
+    'Nutri-Grain': {'Whole Grain Oats': '50%', 'Corn Syrup': '25%', 'Sugar': '15%', 'Fruit Filling': '10%'},
+    'Rice Krispies': {'Rice': '50%', 'Sugar': '30%', 'Salt': '10%', 'Malt Flavor': '10%'},
+    'Special K': {'Rice': '40%', 'Sugar': '30%', 'Wheat': '20%', 'Salt': '10%'},
+    'Cheerios': {'Whole Grain Oats': '60%', 'Corn Starch': '20%', 'Sugar': '15%', 'Salt': '5%'},
+    'Froot Loops': {'Corn Flour': '50%', 'Sugar': '30%', 'Oat Flour': '15%', 'Salt': '5%'},
+    'Lucky Charms': {'Corn Flour': '50%', 'Sugar': '30%', 'Oat Flour': '15%', 'Marshmallows': '5%'},
+    'Oatmeal Creme Pies': {'Oat Flour': '50%', 'Sugar': '30%', 'Vegetable Oil': '15%', 'Cream Filling': '5%'},
+    'Little Debbie': {'Sugar': '40%', 'Wheat Flour': '30%', 'Vegetable Oil': '20%', 'Chocolate': '10%'},
+    'HoHos': {'Cake': '50%', 'Cream Filling': '30%', 'Chocolate Coating': '15%', 'Sugar': '5%'},
+    'Swiss Rolls': {'Cake': '50%', 'Cream Filling': '30%', 'Chocolate Coating': '15%', 'Sugar': '5%'},
+    'Hostess Cupcakes': {'Cake': '50%', 'Cream Filling': '30%', 'Chocolate Frosting': '15%', 'Sugar': '5%'},
+    'Twinkies': {'Cake': '50%', 'Cream Filling': '30%', 'Vegetable Oil': '15%', 'Sugar': '5%'},
+    'Ring Dings': {'Cake': '50%', 'Chocolate Coating': '30%', 'Cream Filling': '15%', 'Sugar': '5%'},
+    'Moon Pies': {'Marshmallow': '40%', 'Graham Cracker': '30%', 'Chocolate Coating': '20%', 'Sugar': '10%'},
+    'Gushers': {'Fruit Puree': '50%', 'Corn Syrup': '30%', 'Sugar': '15%', 'Gelatin': '5%'},
+    'Fruit by the Foot': {'Fruit Puree': '50%', 'Corn Syrup': '30%', 'Sugar': '15%', 'Gelatin': '5%'},
+    'Airheads': {'Sugar': '60%', 'Corn Syrup': '20%', 'Hydrogenated Palm Kernel Oil': '15%', 'Flavorings': '5%'},
+    'Jolly Rancher': {'Sugar': '60%', 'Corn Syrup': '20%', 'Artificial Flavor': '15%', 'Colorings': '5%'},
+    'Laffy Taffy': {'Sugar': '60%', 'Corn Syrup': '20%', 'Palm Oil': '15%', 'Flavorings': '5%'},
+    'Smarties': {'Sugar': '60%', 'Dextrose': '20%', 'Citric Acid': '10%', 'Natural and Artificial Flavors': '10%'},
+    'Nerds': {'Sugar': '60%', 'Dextrose': '20%', 'Artificial Flavors': '15%', 'Colorings': '5%'},
+    'Starburst': {'Sugar': '50%', 'Corn Syrup': '20%', 'Hydrogenated Palm Kernel Oil': '15%', 'Fruit Juice': '15%'},
+    'Twizzlers': {'Corn Syrup': '50%', 'Sugar': '30%', 'Wheat Flour': '15%', 'Palm Oil': '5%'},
+    'Red Vines': {'Sugar': '60%', 'Corn Syrup': '20%', 'Wheat Flour': '15%', 'Red Dye': '5%'},
+    'Haribo': {'Sugar': '50%', 'Glucose Syrup': '30%', 'Gelatin': '15%', 'Flavorings': '5%'},
+    'Gummy Bears': {'Sugar': '50%', 'Glucose Syrup': '30%', 'Gelatin': '15%', 'Flavorings': '5%'},
+    'Swedish Fish': {'Sugar': '60%', 'Corn Syrup': '20%', 'Artificial Flavors': '15%', 'Red Dye': '5%'},
+    'Pez': {'Sugar': '60%', 'Corn Syrup': '20%', 'Flavorings': '15%', 'Colorings': '5%'},
+    'Pocky': {'Wheat Flour': '50%', 'Sugar': '30%', 'Vegetable Oil': '15%', 'Chocolate': '5%'},
+    'KitKat': {'Wheat Flour': '50%', 'Sugar': '30%', 'Vegetable Oil': '15%', 'Chocolate': '5%'},
+    'Milky Way': {'Sugar': '50%', 'Milk Chocolate': '30%', 'Corn Syrup': '15%', 'Chocolate': '5%'},
+    'Mars': {'Sugar': '50%', 'Milk Chocolate': '30%', 'Corn Syrup': '15%', 'Vegetable Oil': '5%'},
+    'Snickers': {'Peanuts': '40%', 'Sugar': '30%', 'Milk Chocolate': '20%', 'Corn Syrup': '10%'},
+    'Reese\'s': {'Peanut Butter': '40%', 'Milk Chocolate': '30%', 'Sugar': '25%', 'Salt': '5%'},
+    'Butterfinger': {'Peanut Butter': '35%', 'Sugar': '30%', 'Corn Syrup': '25%', 'Chocolate': '10%'},
+    'Almond Joy': {'Almonds': '30%', 'Milk Chocolate': '30%', 'Coconut': '30%', 'Sugar': '10%'},
+    'Mounds': {'Coconut': '40%', 'Dark Chocolate': '30%', 'Sugar': '20%', 'Corn Syrup': '10%'},
+    'Fanta': {'Carbonated Water': '90%', 'High Fructose Corn Syrup': '5%'}
+    }
+
 
 def check_product(request):
-    if request.method == 'POST' and request.FILES['product_image']:
+    if request.method == 'POST' and request.FILES.get('product_image'):
         product_image = ProductImage(image=request.FILES['product_image'])
         product_image.save()
         image_path = default_storage.path(product_image.image.name)
         product_name = extract_product_name(image_path)
-        print(product_name)
         product_name_formatted = product_name.title()
     
-        ingredients = PRODUCT_INGREDIENTS.get(product_name_formatted, 'Ingredients not available')
+        # Get ingredients and percentages
+        ingredients = PRODUCT_INGREDIENTS.get(product_name_formatted, {})
         
-        if product_name in PRODUCT_INGREDIENTS:
-            message = f"Warning: {product_name} contains sugar."
+        if ingredients:
+            message = f"Warning: {product_name} contains sugar." if 'Sugar' in ingredients else f"{product_name} might not contain sugar."
+            ingredient_message = "Major ingredients and percentages: " + ', '.join([f"{ingredient}: {percentage}" for ingredient, percentage in ingredients.items()])
         else:
-            message = f"{product_name} might not contain sugar."
-        
-        ingredient_message = f"Major ingredients: {', '.join(ingredients) if isinstance(ingredients, list) else ingredients}"
-        
+            message = f"{product_name} information not available."
+            ingredient_message = "Ingredients information is not available."
+
         return render(request, 'disease/result.html', {'message': message, 'ingredients': ingredient_message})
     
     return render(request, 'disease/upload.html')
