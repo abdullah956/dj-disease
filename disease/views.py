@@ -117,13 +117,14 @@ def check_product(request):
         product_image.save()
         image_path = default_storage.path(product_image.image.name)
         product_name = extract_product_name(image_path)
+        print(product_name)
         product_name_formatted = product_name.title()
     
         # Get ingredients and percentages
         ingredients = PRODUCT_INGREDIENTS.get(product_name_formatted, {})
         
         if ingredients:
-            message = f"Warning: {product_name} contains sugar." if 'Sugar' in ingredients else f"{product_name} might not contain sugar."
+            message = f"Warning: {product_name} contains sugar."
             ingredient_message = "Major ingredients and percentages: " + ', '.join([f"{ingredient}: {percentage}" for ingredient, percentage in ingredients.items()])
         else:
             message = f"{product_name} information not available."
