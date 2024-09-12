@@ -7,7 +7,7 @@ import numpy as np
 from PIL import Image, ImageEnhance, ImageFilter, ImageOps
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-PRODUCTS_WITH_SUGAR = ['Oreo', 'Hershey', "M&M's", 'Skittles', 'Twix', 'Starburst']
+PRODUCTS_WITH_SUGAR = ['Oreo', 'Hershey', 'Starburst', 'Snickers',  'Butterfinger']
 
 def check_product(request):
     if request.method == 'POST' and request.FILES['product_image']:
@@ -35,7 +35,8 @@ def extract_product_name(image_path):
     image = image.resize((new_width, new_height), Image.Resampling.BICUBIC)
     extracted_text = pytesseract.image_to_string(image, config='--psm 6')
     extracted_text = extracted_text.lower()
-    known_products = ['oreo', 'hershey', 'skittles', 'twix', 'starburst']
+    print("extracted text ",extracted_text)
+    known_products = ['oreo', 'hershey', 'starburst', 'snickers',  'butterfinger']
     for product in known_products:
         if product in extracted_text:
             return product.capitalize()
