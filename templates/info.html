@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>G6PD AWARENESS HUB</title>
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+
+    <link rel="manifest" href="assets/img/favicons/manifest.json" />
+    <meta
+      name="msapplication-TileImage"
+      content="assets/img/favicons/mstile-150x150.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="assets/css/theme.css" rel="stylesheet" />
+    <style>
+      .nav-link {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+      <nav
+        class="navbar navbar-expand-lg navbar-light bg-light fixed-top py-3 d-block text-secondary"
+        data-navbar-on-scroll="data-navbar-on-scroll"
+      >
+        <div class="container">
+          <a class="navbar-brand" href="index.html"
+            ><h1 class="fw-light font-base fs-6 fs-xxl-7">
+              <strong>G6PD</strong>
+            </h1></a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"> </span>
+          </button>
+          <div
+            class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0"
+            id="navbarSupportedContent"
+          >
+            <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
+              <li class="nav-item px-2">
+                <a class="nav-link" aria-current="page" href="#about"
+                  >About Us</a
+                >
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link" href="selfcare.html">Self Care</a>
+              </li>
+              <li class="nav-item dropdown px-2">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  G6PD Info
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li>
+                    <a class="dropdown-item" href="info.html">Whats is G6PD?</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="symptoms.html">Symptoms</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="triggers.html">Triggers</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="foods-to-avoid.html"
+                      >Foods to avoid</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="emergency-care.html"
+                      >Emergency Care</a
+                    >
+                  </li>
+                  <!-- Add more languages as needed -->
+                </ul>
+              </li>
+
+              <li class="nav-item dropdown px-2">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Languages
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">English</a></li>
+                  <li><a class="dropdown-item" href="#">Spanish</a></li>
+                  <li><a class="dropdown-item" href="#">French</a></li>
+                  <!-- Add more languages as needed -->
+                </ul>
+              </li>
+
+              <li class="nav-item px-2">
+                <a class="nav-link" href="#findUs">Contact</a>
+              </li>
+            </ul>
+            <a
+              class="btn btn-sm btn-outline-danger rounded-pill order-1 order-lg-0 ms-lg-4"
+              href="#!"
+              >Sign In</a
+            >
+          </div>
+        </div>
+      </nav>
+      <section class="py-xxl-10 pb-0" id="home">
+        <div
+          class="bg-holder bg-size"
+          style="
+            background-image: url(assets/img/gallery/hero-bg.png);
+            background-position: top center;
+            background-size: cover;
+          "
+        ></div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+          <div class="row min-vh-xl-100 min-vh-xxl-25">
+            <div
+              class="col-md-5 col-xl-6 col-xxl-7 order-0 order-md-1 text-end"
+            >
+              <img
+                class="pt-7 pt-md-0 w-100"
+                src="assets/img/gallery/hero.png"
+                alt="hero-header"
+              />
+            </div>
+            <div
+              class="col-md-75 col-xl-6 col-xxl-5 text-md-start text-center py-6"
+            >
+              <h1 class="fw-light font-base fs-6 fs-xxl-7">
+                <strong>What is G6PD Deficiency?</strong>
+              </h1>
+              <p class="fs-1 mb-3">
+                Glucose-6-Phosphate Dehydrogenase Deficiency
+              </p>
+              <a
+                class="btn btn-lg btn-danger rounded-pill"
+                href="#!"
+                role="button"
+                >Self-Assessment Form</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+      <!-- <section class="py-5" id="departments">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 py-3">
+              <div
+                class="bg-holder bg-size"
+                style="
+                  background-image: url(assets/img/gallery/bg-departments.png);
+                  background-position: top center;
+                  background-size: contain;
+                "
+              ></div>
+              
+
+              <h1 class="text-center">OUR DEPARTMENTS</h1>
+            </div>
+          </div>
+        </div>
+        
+      </section> -->
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+      <!-- ============================================-->
+
+      <div class="container mt-4 mb-4">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 class="mb-3">Understanding G6PD Deficiency</h1>
+            <p class="text-dark">
+              Glucose-6-Phosphate Dehydrogenase Deficiency is an inherited
+              genetic enzyme disorder. It was first discovered in 1956 as the
+              cause of hemolytic anemia that developed in some individuals after
+              the administration of the antimalarial drug primaquine. It was
+              then recognized as also being the cause of the disorder called
+              Favism, known for centuries as the reaction some people have to
+              eating fava beans. The common factor between the antimalarial
+              drugs and fava beans is their propensity to cause oxidative
+              stress.
+            </p>
+
+            <h2 class="mt-4 mb-2">
+              What is Glucose-6-Phosphate Dehydrogenase?
+            </h2>
+            <p class="text-dark">
+              Glucose-6-phosphate dehydrogenase (G6PD) is an enzyme found in
+              every cell of the body. It is part of the chemical mechanism by
+              which the body is able to process glucose. Although we are most
+              familiar with the concept of using glucose as a fuel to provide
+              energy, the function of G6PD is different; it is needed to produce
+              a substance called NADPH which is very important both for cells’
+              ability to make other compounds and also to protect against
+              oxidative stress. Although every cell contains G6PD, it plays a
+              special role in the red blood cell (RBC). In the RBC, the only
+              source of NADPH is the pentose phosphate pathway, the first step
+              of which is controlled by G6PD. At the same time, since the main
+              function of the RBC is to transport oxygen from the lungs to the
+              rest of the body, it is uniquely susceptible to oxidative stress.
+              It is not surprising, therefore, that the most common clinical
+              manifestation of an inherited deficiency in G6PD is the
+              accelerated breakdown of the RBCs leading to something called
+              Acute Hemolytic Anemia. Hemolytic anemia in adults is usually not
+              life-threatening in developed countries but newborn infants with
+              G6PD deficiency are also at risk for a severe form of jaundice
+              that can lead to irreversible brain damage.
+            </p>
+
+            <h2 class="mt-4 mb-2">Is the Deficiency Common?</h2>
+            <p class="text-dark">
+              G6PD deficiency is actually the most common inherited enzyme
+              deficiency in the world. A statistical analysis of 280 studies in
+              the medical literature derived a number equivalent to about 5% of
+              the world’s population as being affected. In a way, however, this
+              number is not very useful because G6PD deficiency is not evenly
+              distributed around the world. This seems to be because, countering
+              the negative health effects of G6PD deficiency, the deficiency
+              gives some protection against malaria. As a result, in regions of
+              the world where malaria has been endemic since prehistoric times,
+              there has been positive selection for G6PD. Thus even within the
+              same country, the prevalence of G6PD deficiency can vary greatly
+              between different ethnic or geographical populations, from near
+              zero to perhaps as high as 70%. Malaria was not present in the
+              Americas before the arrival of the Europeans and Native American
+              populations do not have a significant incidence of G6PD
+              deficiency. Since then, of course, there has been extensive
+              migration to the Americas and significant numbers of the
+              present-day population of the United States originate from or have
+              ancestors who originate from, the areas of the world where the
+              frequency of G6PD deficiency is high. These include sub-Saharan
+              Africa, the shores of the Mediterranean, and Southeast Asia. Thus,
+              the overall frequency of G6PD deficiency in the USA is probably
+              between 4 and 7% but in African-American males, the prevalence is
+              about 12%.
+            </p>
+
+            <h2 class="mt-4 mb-2">Genetics</h2>
+            <p class="text-dark">
+              Approximately 130 – 160 mutations of the G6PD gene have been
+              identified, although it seems that not all of the individually
+              named variants are in fact unique. Four or five distinct variants
+              seem to account for the majority of people affected, with distinct
+              geographical ranges associated with them. These mutations differ
+              in the kind and severity of impairment they cause in G6PD
+              activity; most seem to primarily affect the stability of the
+              enzyme — which causes the red cell to age more quickly in the
+              circulation — as well as the actual level of enzymatic activity. A
+              total absence of G6PD activity appears to be incompatible with
+              life. The gene for G6PD is on the X chromosome, which has
+              important consequences. Since males have only one X chromosome and
+              thus only one copy of the gene (hemizygous), they will certainly
+              be symptomatic if that copy contains a deleterious mutation.
+              Females can be normal, have two affected genes (homozygous) or one
+              normal, and one affected gene (heterozygous). Although
+              heterozygous females have two copies of the gene, in any cell only
+              one copy is active. Thus, a heterozygous female is a genetic
+              mosaic and a proportion of her red cells will have the mutated
+              form of G6PD. It is explained in greater detail in the “Did I
+              inherit G6PD deficiency?” section.
+            </p>
+
+            <h2 class="mt-4 mb-2">Clinical Observations</h2>
+            <p class="text-dark">
+              Cases of G6PD deficiency are assigned to one of 5 classes based on
+              a combination of clinical manifestations and actual measured
+              levels of G6PD activity. Classes IV and V have normal or greater
+              than normal activity and are not associated with any clinical
+              symptoms. <br /><br />
+
+              <strong>Class I:</strong> This is a severe form of G6PD
+              deficiency. The residual enzyme activity is less than 20% of
+              normal and is associated with Chronic Non-Spherocytic Hemolytic
+              Anemia. The mutations leading to Class I G6PD deficiency are
+              always sporadic mutations rather than one of the known inherited
+              variants.<br /><br />
+
+              <strong>Class II:</strong> Characterized by very low measured
+              enzyme activity (&lt;10% normal) and is associated with episodes
+              of Acute Hemolytic Anemia. The common Mediterranean and Asian
+              variants are included in Class II.<br /><br />
+
+              <strong>Class III:</strong> Characterized by enzyme levels of
+              10-60% of normal and includes the A- variant common in Africa and
+              in the US among African-Americans. It too is associated with
+              hemolytic anemia but the RBCs seem to be more resistant to
+              oxidative stress.<br /><br />
+
+              All three classes are associated with a risk of neonatal jaundice
+              that is more severe than the so-called physiologic jaundice.
+            </p>
+
+            <h2 class="mt-4 mb-2">Major Symptoms</h2>
+            <p class="text-dark">
+              Chronic Non-Spherocytic Hemolytic Anemia is a complicated and very
+              variable syndrome. It is almost always found in males without any
+              family history of G6PD deficiency. There is a wide range of
+              severity, apparently because many different mutations affecting
+              the G6PD molecule have differing effects on the activity and
+              stability of the enzyme. In many cases, there is a history of
+              neonatal jaundice and ongoing anemia as well as enlarged spleen
+              (splenomegaly) and gallstones. To make things worse, the triggers
+              that cause Acute Hemolytic Anemia can also affect these
+              individuals exacerbating their symptoms and causing attacks of
+              acute anemia that may require transfusion. <br /><br />
+              Acute Hemolytic Anemia is usually characterized by malaise,
+              fatigue or weakness, abdominal or back pain and after a day or so,
+              jaundice and dark urine appear and anemia develops. An attack of
+              Acute Hemolytic Anemia is usually triggered by one of three
+              stimuli that have led to different names for G6PD deficiency.
+              Primaquine sensitivity and Favism are both terms that have been
+              used to describe the occurrence of hemolytic anemia in patients
+              whom we now know to have G6PD deficiency. Although the
+              antimalarial Primaquine was the first drug associated with the
+              development of hemolysis in G6PD deficient subjects, a number of
+              drugs are now known to be risk factors as well as some chemicals,
+              most notably naphthalene used in mothballs. Favism appears to have
+              been recognized since ancient times; it refers to the illness seen
+              in G6PD deficient individuals after eating Fava Beans (although
+              not every G6PD deficient person will react every time they consume
+              the beans). Despite these well-known observations, there is reason
+              to believe that the most common precipitating factor of hemolytic
+              anemia is in fact infection and both viral and bacterial
+              infections have been implicated. <br /><br />Neonatal Jaundice is
+              detected with many newborn babies. More than 80% of newborns
+              develop a mild jaundice in their first week or two. In most cases,
+              this resolves without harm and the total serum bilirubin does not
+              rise to harmful levels. In some cases, however, newborns develop
+              more severe forms of jaundice as a consequence of severe
+              hyperbilirubinemia (a high concentration of bilirubin in the
+              blood). Untreated or insufficiently treated infants are at risk of
+              a condition called kernicterus, which occurs when the serum
+              bilirubin crosses the blood-brain barrier and affects the
+              developing brain, leading to lifelong disability. There are
+              multiple disorders known to cause or contribute to neonatal
+              jaundice but the association of hyperbilirubinemia with G6PD
+              deficiency is clear: of the infants who develop the syndrome or go
+              on to develop kernicterus, there is a disproportionate number with
+              G6PD deficiency, several times the percentage in the general
+              population and rising in some studies to 20 or 30% of
+              readmissions. Nevertheless, it should be emphasized that not all
+              infants with G6PD deficiency develop severe jaundice (the
+              incidence is about 30%) and not all, or even the majority, of
+              cases of neonatal hyperbilirubinemia are the result of G6PD
+              deficiency. The topic of neonatal jaundice is an extremely
+              important one since though rare; the consequences can be so
+              devastating. Thus it is explained in greater detail in the
+              Jaundice & Kernicterus section.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+      <section class="py-5">
+        <div class="container" id="findUs">
+          <div class="row">
+            <div class="col-12 py-3">
+              <div
+                class="bg-holder bg-size"
+                style="
+                  background-image: url(assets/img/gallery/people.png);
+                  background-position: top center;
+                  background-size: contain;
+                "
+              ></div>
+              <!--/.bg-holder-->
+
+              <h1 class="text-center">Contact Us</h1>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+      </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+      <section class="py-8">
+        <div class="container">
+          <div class="row">
+            <div
+              class="bg-holder bg-size"
+              style="
+                background-image: url(assets/img/gallery/dot-bg.png);
+                background-position: bottom right;
+                background-size: auto;
+              "
+            ></div>
+            <!--/.bg-holder-->
+
+            <div class="col-lg-6 z-index-2 mb-5">
+              <img
+                class="w-100"
+                src="assets/img/gallery/appointment.png"
+                alt="..."
+              />
+            </div>
+            <div class="col-lg-6 z-index-2">
+              <form class="row g-3">
+                <div class="col-md-6">
+                  <label class="visually-hidden" for="inputName">Name</label>
+                  <input
+                    class="form-control form-livedoc-control"
+                    id="inputName"
+                    type="text"
+                    placeholder="Name"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label class="visually-hidden" for="inputPhone">Phone</label>
+                  <input
+                    class="form-control form-livedoc-control"
+                    id="inputPhone"
+                    type="text"
+                    placeholder="Phone"
+                  />
+                </div>
+
+                <div class="col-md-12">
+                  <label class="form-label visually-hidden" for="inputEmail"
+                    >Email</label
+                  >
+                  <input
+                    class="form-control form-livedoc-control"
+                    id="inputEmail"
+                    type="email"
+                    placeholder="Email"
+                  />
+                </div>
+                <div class="col-md-12">
+                  <label
+                    class="form-label visually-hidden"
+                    for="validationTextarea"
+                    >Message</label
+                  >
+                  <textarea
+                    class="form-control form-livedoc-control"
+                    id="validationTextarea"
+                    placeholder="Message"
+                    style="height: 250px"
+                    required="required"
+                  ></textarea>
+                </div>
+                <div class="col-12">
+                  <div class="d-grid">
+                    <button class="btn btn-danger rounded-pill" type="submit">
+                      Send Message
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-danger">
+        <div
+          class="bg-holder bg-size"
+          style="
+            background-image: url(assets/img/gallery/cta-bg.png);
+            background-position: center right;
+            margin-top: -8.125rem;
+            background-size: contain;
+          "
+        ></div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <h2 class="fw-bold text-light">Get an update every week</h2>
+              <p class="text-light">
+                This web app was created in order to improve the patient
+                experience.
+                <br />Providing real-time product tests, and a wide range of
+                other services.
+              </p>
+            </div>
+            <div class="col-lg-6">
+              <h5 class="mb-3 text-light">SUBSCRIBE TO NEWSLETTER</h5>
+              <form class="row gx-2 gy-2 align-items-center">
+                <div class="col">
+                  <div class="input-group-icon">
+                    <label class="visually-hidden" for="inputEmailCta"
+                      >Address</label
+                    >
+                    <input
+                      class="form-control form-livedoc-control form-cta-control text-dark"
+                      id="inputEmailCta"
+                      type="email"
+                      placeholder="Email"
+                      style="background-color: white"
+                    />
+                  </div>
+                </div>
+                <div class="d-grid gap-3 col-sm-auto">
+                  <button
+                    class="btn btn-lg btn-light rounded-3 px-5 py-3"
+                    type="submit"
+                  >
+                    Subscribe
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-0" style="background-color: #ffd0cd">
+        <div
+          class="bg-holder opacity-25"
+          style="
+            background-image: url(assets/img/gallery/dot-bg.png);
+            background-position: top left;
+            margin-top: -3.125rem;
+            background-size: auto;
+          "
+        ></div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+          <div class="row py-8">
+            <div class="col-12 col-sm-12 col-lg-6 mb-4 order-0 order-sm-0">
+              <a class="text-decoration-none" href="#"
+                ><h1 class="fw-light font-base fs-6 fs-xxl-7">
+                  <strong>G6PD</strong>
+                </h1></a
+              >
+              <p class="text-dark my-4">
+                The world's most trusted <br />healthcare web app.
+              </p>
+            </div>
+
+            <div class="col-6 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
+              <h5 class="lh-lg fw-bold text-red mb-4 font-sans-serif">
+                Quick Links
+              </h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg">
+                  <a class="footer-link" href="#!">About Us</a>
+                </li>
+                <li class="lh-lg">
+                  <a class="footer-link" href="#!">Contact US</a>
+                </li>
+                <li class="lh-lg">
+                  <a class="footer-link" href="#!">Self Care</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================-->
+        <!-- <section> begin ============================-->
+        <section class="py-0 bg-danger">
+          <div class="container">
+            <div
+              class="row justify-content-md-between justify-content-evenly py-4"
+            >
+              <div
+                class="col-12 col-sm-8 col-md-6 col-lg-auto text-center text-md-start"
+              >
+                <p class="fs--1 my-2 fw-bold text-200">
+                  All rights Reserved &copy; G6PD, 2024
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- end of .container-->
+        </section>
+        <!-- <section> close ============================-->
+        <!-- ============================================-->
+      </section>
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="vendors/@popperjs/popper.min.js"></script>
+    <script src="vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="vendors/is/is.min.js"></script>
+    <script src="https://scripts.sirv.com/sirvjs/v3/sirv.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="vendors/fontawesome/all.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fjalla+One&amp;family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&amp;display=swap"
+      rel="stylesheet"
+    />
+  </body>
+</html>
