@@ -84,7 +84,7 @@
                 <a class="nav-link" href="#findUs">Contact</a>
               </li>
             </ul>
-            <a class="btn btn-sm btn-outline-danger rounded-pill order-1 order-lg-0 ms-lg-4" href="#!">Sign In</a>
+            <a class="btn btn-sm btn-outline-danger rounded-pill order-1 order-lg-0 ms-lg-4" href="{% url 'register'%}">Sign In</a>
           </div>
         </div>
       </nav>
@@ -114,16 +114,17 @@
       <div class="container form-container mb-5">
         <div class="row justify-content-center">
           <div class="col-md-6">
-            <form>
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
               <div class="mb-3">
                 <label for="productName" class="form-label">Product Name</label>
-                <input type="text" class="form-control bg-light" id="productName" placeholder="Enter product name" />
+                <input type="text" name="name" class="form-control bg-light" id="productName" placeholder="Enter image name" required />
               </div>
               <div class="mb-3">
                 <label for="productImage" class="form-label">Upload Image</label>
-                <input type="file" class="form-control bg-light" id="productImage" />
+                <input type="file" name="product_image" class="form-control bg-light" id="productImage" accept="image/*" required />
               </div>
-              <button type="submit" class="btn btn-danger">Submit</button>
+              <button type="submit" class="btn btn-danger">Upload</button>
             </form>
           </div>
         </div>

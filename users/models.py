@@ -17,3 +17,12 @@ class User(AbstractUser, BasedModel):
 
     def __str__(self):
         return self.email
+
+class Contact(BasedModel):
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=20)
+    email = models.EmailField()
+    message = models.TextField()
+
+    def __str__(self):
+        return self.name
