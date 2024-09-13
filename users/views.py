@@ -13,6 +13,177 @@ import easyocr
 reader = easyocr.Reader(['en'])
 
 PRODUCT_INGREDIENTS = {
+    'alpro': {
+    'Water': '60-90%',
+    'Almonds/Soybeans': '2-10%',
+    'Sweeteners (e.g., Cane Sugar, Maltodextrin)': '0-10%',
+    'Stabilizers (e.g., Gellan Gum, Guar Gum)': '0-1%',
+    'Calcium Carbonate': '0-1%',
+    'Flavors (e.g., Vanilla, Chocolate)': '0-1%',
+    'Salt': '0-1%',
+    'Vitamins (e.g., Vitamin D2, Vitamin B12)': '0-1%'
+    },
+
+    'grapefruit juice': {
+    'Grapefruit': '100%'
+    },
+    'greek yogurt': {
+    'Milk': '95%',
+    'Live Active Cultures (e.g., Lactobacillus bulgaricus, Streptococcus thermophilus)': '4%',
+    'Cream': '1%',
+    'Pectin': '0.5%',
+    'Citric Acid': '0.5%'
+    },
+    'quest': {
+    'Protein Blend (Milk Protein Isolate, Whey Protein Isolate)': '30%',
+    'Isomalto-oligosaccharides (IMO)': '25%',
+    'Almonds': '15%',
+    'Water': '10%',
+    'Cocoa Powder': '8%',
+    'Natural Flavors': '5%',
+    'Vegetable Glycerin': '4%',
+    'Salt': '2%',
+    'Sucralose': '1%',
+    'Steviol Glycosides (Stevia)': '1%'
+    },
+    'shortbread': {
+    'Flour': '60%',
+    'Butter': '30%',
+    'Sugar': '10%',
+    'Salt': '0.5%',
+    'Vanilla Extract': '0.5%'
+    },
+    'smilac': {
+    'Milk Powder': '60%',
+    'Sugar': '25%',
+    'Vegetable Oil': '10%',
+    'Lactose': '3%',
+    'Emulsifiers': '1%',
+    'Flavorings': '0.5%',
+    'Stabilizers': '0.5%'
+    },
+    'maggi': {
+    'Wheat Flour': '60%',
+    'Palm Oil': '15%',
+    'Salt': '10%',
+    'Spices': '5%',
+    'Vegetable Extracts': '4%',
+    'Monosodium Glutamate (MSG)': '3%',
+    'Soy Sauce': '2%',
+    'Sugar': '1%',
+    'Flavors': '0.5%',
+    'Coloring Agents': '0.5%'
+    },
+    'biscoff': {
+    'Wheat Flour': '40%',
+    'Sugar': '30%',
+    'Vegetable Oil (Palm)': '20%',
+    'Brown Sugar': '5%',
+    'Sodium Bicarbonate': '2%',
+    'Salt': '1%',
+    'Cinnamon': '1%',
+    'Cloves': '0.5%',
+    'Nutmeg': '0.5%',
+    },
+    'digestive': {
+    'Wheat Flour': '60%',
+    'Sugar': '15%',
+    'Vegetable Oil (Palm or Canola)': '12%',
+    'Whole Wheat Flour': '10%',
+    'Baking Powder': '2%',
+    'Salt': '1%',
+    'Malt Extract': '1%',
+    },
+    'haribo': {
+    'Sugar': '50%',
+    'Glucose Syrup': '30%',
+    'Gelatin': '15%',
+    'Citric Acid': '2%',
+    'Natural and Artificial Flavors': '2%',
+    'Coloring Agents': '1%',
+    'Lactic Acid': '1%',
+    'Palm Oil': '1%',
+    },
+    'guylian': {
+    'Sugar': '50%',
+    'Vegetable Oil (Palm or Coconut)': '25%',
+    'Milk Powder': '15%',
+    'Cocoa Mass': '10%',
+    'Hazelnuts': '5%',
+    'Cocoa Butter': '5%',
+    'Emulsifier (Lecithin)': '0.5%',
+    'Vanilla Extract': '0.5%',
+    'Salt': '0.1%',
+    },
+    'toblerone': {
+    'Sugar': '50%',
+    'Milk Powder': '30%',
+    'Cocoa Butter': '15%',
+    'Cocoa Mass': '10%',
+    'Honey': '5%',
+    'Almonds': '3%',
+    'Emulsifier (Lecithin)': '0.5%',
+    'Vanilla Extract': '0.5%',
+    },
+    'nescafe': {
+    'Instant Coffee': '100%',
+    },
+    'pasta': {
+    'Durum Wheat Semolina': '100%',
+    },
+    'blast 0 butter': {
+    'Popped Corn': '100%',
+    'Salt': 'Variable',
+    'Oil (such as Canola or Coconut)': 'Variable',
+    'Flavorings (such as Cheese or Spices)': 'Variable'
+    },
+    'popcorn': {
+    'Popped Corn': '100%',
+    'Salt': 'Variable',
+    'Butter': 'Variable',
+    'Oil (such as Canola or Coconut)': 'Variable',
+    'Flavorings (such as Cheese or Caramel)': 'Variable'
+    },
+    'nutella': {
+    'Sugar': '57%',
+    'Palm Oil': '22%',
+    'Hazelnuts': '13%',
+    'Cocoa': '8%',
+    'Skimmed Milk Powder': '6%',
+    'Whey Powder': '4%',
+    'Fat-Reduced Cocoa': '1%',
+    'Emulsifier (Lecithin)': '0.4%',
+    'Vanillin': '0.2%'
+    },
+    'bites': {
+    'Whole Wheat Flour': '40%',
+    'Sugar': '25%',
+    'Vegetable Oil': '15%',
+    'Corn Starch': '10%',
+    'Salt': '5%',
+    'Baking Powder': '3%',
+    'Flavorings (Natural or Artificial)': '2%',
+    'Preservatives (if any)': 'trace amounts'
+    },
+    'bugles': {
+    'Corn Meal': '60%',
+    'Vegetable Oil (Canola or Sunflower)': '20%',
+    'Corn Starch': '10%',
+    'Salt': '5%',
+    'Sugar': '2%',
+    'Leavening Agents (such as Baking Soda or Baking Powder)': '2%',
+    'Flavorings (Natural or Artificial)': '1%'
+    },
+    'sun bites': {
+    'Whole Grain Corn': '50%',
+    'Whole Grain Rice': '25%',
+    'Sunflower Oil': '10%',
+    'Sugar': '8%',
+    'Salt': '2%',
+    'Corn Syrup': '2%',
+    'Natural Flavors': '1%',
+    'Vitamins and Minerals (varies)': 'trace amounts'
+    },
     'choco pops': {
         'Rice': '30%',
         'Sugar': '25%',
@@ -40,6 +211,28 @@ PRODUCT_INGREDIENTS = {
         'Salt': '0.5%',
         'Vanilla extract': '0.5%',
         'Frosting (optional: powdered sugar, butter, flavorings)': '3%'
+    },
+    'gerber organic baby food': {
+    'Organic Carrots': '100%',
+    'Organic Water': 'as needed',
+    'Organic Lemon Juice Concentrate': 'small amount',
+    'Organic Ascorbic Acid (Vitamin C)': 'trace amount'
+    },
+    'four fruits': {
+    'Organic Apples': '40%',
+    'Organic Bananas': '30%',
+    'Organic Pears': '20%',
+    'Organic Peaches': '10%',
+    'Organic Lemon Juice Concentrate': 'trace amount',
+    'Organic Ascorbic Acid (Vitamin C)': 'trace amount'
+    },
+    'cheddar cheese': {
+    'Milk': '90%',
+    'Cheese Culture': '1%',
+    'Rennet': '0.5%',
+    'Salt': '1%',
+    'Annatto (for coloring)': 'trace amount',
+    'Calcium Chloride': '0.5%'
     },
     'sue bee': {
         'Pure honey': '100%'
@@ -145,7 +338,35 @@ def extract_product_name(image_path):
     results = reader.readtext(image_path)
     extracted_text = ' '.join([result[1].lower() for result in results])
     print("extracted text:", extracted_text)
-    known_products = [ 'choco pops','skippy','cupcake','sue bee']
+    known_products = [
+    'alpro',
+    'grapefruit juice',
+    'greek yogurt',
+    'quest',
+    'shortbread',
+    'smilac',
+    'maggi',
+    'biscoff',
+    'digestive',
+    'haribo',
+    'guylian',
+    'toblerone',
+    'nescafe',
+    'pasta',
+    'blast 0 butter',
+    'popcorn',
+    'nutella',
+    'bites',
+    'bugles',
+    'sun bites',
+    'choco pops',
+    'skippy',
+    'cup cake',
+    'gerber organic baby food',
+    'four fruits',
+    'cheddar cheese',
+    'sue bee'
+]
     extracted_prefix = extracted_text[:3]
     for product in known_products:
         if extracted_prefix == product[:3]:
