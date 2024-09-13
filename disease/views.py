@@ -107,21 +107,28 @@ PRODUCT_INGREDIENTS = {
     'Butterfinger': {'Peanut Butter': '35%', 'Sugar': '30%', 'Corn Syrup': '25%', 'Chocolate': '10%'},
     'Almond Joy': {'Almonds': '30%', 'Milk Chocolate': '30%', 'Coconut': '30%', 'Sugar': '10%'},
     'Mounds': {'Coconut': '40%', 'Dark Chocolate': '30%', 'Sugar': '20%', 'Corn Syrup': '10%'},
-    'Fanta': {'Carbonated Water': '90%', 'High Fructose Corn Syrup': '5%'}
+    'Fanta': {'Carbonated Water': '90%', 'High Fructose Corn Syrup': '5%'},
+    'abc': {'ok' : '10%'},
     }
 
 
 def check_product(request):
     if request.method == 'POST' and request.FILES.get('product_image'):
         user = request.user
-        product_image = ProductImage(user=user, image=request.FILES['product_image'])
+        product_name1 = request.POST.get('name')
+        product_image = ProductImage(user=user, name=product_name1,image=request.FILES['product_image'])
         product_image.save()
         image_path = default_storage.path(product_image.image.name)
+        
+        print("product name from form",product_name1)
         product_name = extract_product_name(image_path)
-        print(product_name)
         product_name_formatted = product_name.title()
         ingredients = PRODUCT_INGREDIENTS.get(product_name_formatted, {})
-        if ingredients:
+        print(ingredients)
+        if product_name1 in PRODUCT_INGREDIENTS:
+            message = f"Warning: {product_name1} contains sugar."
+            return render(request, 'disease/result.html', {'message': message})
+        elif ingredients:
             message = f"Warning: {product_name} contains sugar."
             ingredient_message = "Major ingredients and percentages: " + ', '.join([f"{ingredient}: {percentage}" for ingredient, percentage in ingredients.items()])
         else:

@@ -5,7 +5,9 @@
   </head>
   <body>
     <h1>{{ message }}</h1>
-    <p>{{ ingredients }}</p>
+    {% if ingredients %}
+      <p>{{ ingredients }}</p>
+    {% endif %}
 
     <a href="{% url 'check_product' %}">Check another product</a>
   </body>

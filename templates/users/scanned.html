@@ -9,6 +9,7 @@
         <ul>
             {% for image in images %}
                 <li>
+                    <p>Name : {{image.name}}</p>
                     <img src="{{ image.image.url }}" alt="Product Image" width="200"/>
                     <p>Uploaded at: {{ image.uploaded_at }}</p>
                 </li>

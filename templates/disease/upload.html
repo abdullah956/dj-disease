@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Upload Product Image</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Check if the product contains sugar</h1>
     <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="file" name="product_image" accept="image/*" required>
-        <button type="submit">Upload</button>
+      {% csrf_token %}
+      <input type="text" name="name" placeholder="Enter image name" required />
+      <input type="file" name="product_image" accept="image/*" required />
+      <button type="submit">Upload</button>
     </form>
-</body>
+  </body>
 </html>
