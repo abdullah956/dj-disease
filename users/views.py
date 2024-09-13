@@ -9,6 +9,31 @@ def index_view(request):
     return render(request, 'index.html')
 
 
+def about_view(request):
+    return render(request, 'about.html')
+
+def emergency_view(request):
+    return render(request, 'emergency-care.html')
+
+def avoid_view(request):
+    return render(request, 'foods-to-avoid.html')
+
+
+def info_view(request):
+    return render(request, 'info.html')
+
+def selfcare_view(request):
+    return render(request, 'selfcare.html')
+
+def symptoms_view(request):
+    return render(request, 'symptoms.html')
+
+
+def triggers_view(request):
+    return render(request, 'triggers.html')
+
+
+
 class UserRegisterView(View):
     def get(self, request):
         form = UserRegistrationForm()
