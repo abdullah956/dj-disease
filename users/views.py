@@ -311,11 +311,17 @@ def selfcare_view(request):
         ingredients = {key.replace(' ', '').lower(): value for key, value in PRODUCT_INGREDIENTS.items()}
         product_ingredients = ingredients.get(product_name_normalized, {})
         if product_ingredients:
-            message = f"Warning: {product_name.title()} contains sugar."
-            ingredient_message = "Major ingredients and percentages: " + ', '.join([f"{ingredient}: {percentage}" for ingredient, percentage in product_ingredients.items()])
+            message = f"{product_name.title()}"
+            if any("sugar" in ingredient.lower() for ingredient in product_ingredients):
+                ingredient_message = "These ingredients contain sugar: " + ', '.join([f"{ingredient}: {percentage}" for ingredient, percentage in product_ingredients.items()])
+                ingredient_message1 = "These ingredients contain sugar (Not Safe to Consume)"
+            else:
+                ingredient_message = "Major ingredients and percentages: " + ', '.join([f"{ingredient}: {percentage}" for ingredient, percentage in product_ingredients.items()])
+                ingredient_message1 = "These ingredients do not contain sugar (Safe to Consume)"
+            return render(request, 'result.html', {'message': message, 'ingredients': ingredient_message, 'ingredients1' : ingredient_message1})
         else:
             message = f"{product_name.title()} information not available."
-            ingredient_message = "Ingredients information is not available."
+            ingredient_message = "Ingredient information is not available."
         return render(request, 'result.html', {'message': message, 'ingredients': ingredient_message})
         #for images
         image_path = default_storage.path(product_image.image.name)
