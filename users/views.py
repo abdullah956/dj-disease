@@ -125,7 +125,7 @@ PRODUCT_INGREDIENTS = {
     'Emulsifier (Lecithin)': '0.5%',
     'Vanilla Extract': '0.5%',
     },
-    'nescafe': {
+    'cappuccino': {
     'Instant Coffee': '100%',
     },
     'pasta': {
