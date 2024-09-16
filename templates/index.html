@@ -194,6 +194,13 @@
           {% endfor %}
         </div>
       {% endif %}
+      {% if messages %}
+        <div class="alert alert-dismissible fade show">
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
       <section class="py-xxl-10 pb-0" id="home">
         <div class="bg-holder bg-size" style="
     background-image: url({% static 'img/gallery/hero-bg.png' %});

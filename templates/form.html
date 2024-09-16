@@ -4,60 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>G6PD Deficiency Self-Assessment Checklist</title>
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <h2>G6PD Deficiency Self-Assessment Checklist</h2>
     <p>Answer the questions below to check if you are at risk of G6PD deficiency.</p>
 
-    <form action="{% url 'submit-assessment' %}" method="POST">
-        {% csrf_token %}
-        <!-- Family History -->
-        <fieldset>
-            <legend>Family History</legend>
-            
-            <p>Do you have a family history of G6PD deficiency?</p>
-            <input type="radio" id="family_yes" name="family_history" value="yes">
-            <label for="family_yes">Yes</label><br>
-            <input type="radio" id="family_no" name="family_history" value="no">
-            <label for="family_no">No</label><br><br>
+    <form action="{% url 'submit-assessment' %}" method="POST" class="container mt-4">
+    {% csrf_token %}
+    
+    <div class="form-group">
+        <label for="family_history">Do you have a family history of G6PD deficiency?</label><br>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="family_history" id="family_history_yes" value="yes" {% if family_history %}checked{% endif %}>
+            <label class="form-check-label" for="family_history_yes">Yes</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="family_history" id="family_history_no" value="no" {% if family_history is not None and not family_history %}checked{% endif %}>
+            <label class="form-check-label" for="family_history_no">No</label>
+        </div>
+    </div>
 
-            <p>Do any close relatives suffer from G6PD deficiency?</p>
-            <input type="radio" id="relatives_yes" name="close_relatives" value="yes">
-            <label for="relatives_yes">Yes</label><br>
-            <input type="radio" id="relatives_no" name="close_relatives" value="no">
-            <label for="relatives_no">No</label>
-        </fieldset>
+    <div class="form-group">
+        <label for="close_relatives">Do any close relatives suffer from G6PD deficiency?</label><br>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="close_relatives" id="close_relatives_yes" value="yes" {% if close_relatives %}checked{% endif %}>
+            <label class="form-check-label" for="close_relatives_yes">Yes</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="close_relatives" id="close_relatives_no" value="no" {% if close_relatives is not None and not close_relatives %}checked{% endif %}>
+            <label class="form-check-label" for="close_relatives_no">No</label>
+        </div>
+    </div>
 
-        <!-- Symptoms -->
-        <fieldset>
-            <legend>Symptoms</legend>
-            
-            <p>Do you feel weak or fatigued after eating certain foods (like fava beans)?</p>
-            <input type="radio" id="weakness_yes" name="weakness_fatigue" value="yes">
-            <label for="weakness_yes">Yes</label><br>
-            <input type="radio" id="weakness_no" name="weakness_fatigue" value="no">
-            <label for="weakness_no">No</label><br><br>
+    <div class="form-group">
+        <label for="weakness_fatigue">Do you feel weak or fatigued after eating certain foods?</label><br>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="weakness_fatigue" id="weakness_fatigue_yes" value="yes" {% if weakness_fatigue %}checked{% endif %}>
+            <label class="form-check-label" for="weakness_fatigue_yes">Yes</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="weakness_fatigue" id="weakness_fatigue_no" value="no" {% if weakness_fatigue is not None and not weakness_fatigue %}checked{% endif %}>
+            <label class="form-check-label" for="weakness_fatigue_no">No</label>
+        </div>
+    </div>
 
-            <p>Have you ever experienced jaundice (yellowing of the skin and eyes)?</p>
-            <input type="radio" id="jaundice_yes" name="jaundice" value="yes">
-            <label for="jaundice_yes">Yes</label><br>
-            <input type="radio" id="jaundice_no" name="jaundice" value="no">
-            <label for="jaundice_no">No</label>
-        </fieldset>
+    <div class="form-group">
+        <label for="jaundice">Have you ever experienced jaundice?</label><br>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="jaundice" id="jaundice_yes" value="yes" {% if jaundice %}checked{% endif %}>
+            <label class="form-check-label" for="jaundice_yes">Yes</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="jaundice" id="jaundice_no" value="no" {% if jaundice is not None and not jaundice %}checked{% endif %}>
+            <label class="form-check-label" for="jaundice_no">No</label>
+        </div>
+    </div>
 
-        <!-- Geographical/Ethnic Risk Factors -->
-        <fieldset>
-            <legend>Geographical/Ethnic Risk Factors</legend>
-            
-            <p>Are you of African, Mediterranean, Middle Eastern, or Southeast Asian descent?</p>
-            <input type="radio" id="descent_yes" name="ethnic_risk" value="yes">
-            <label for="descent_yes">Yes</label><br>
-            <input type="radio" id="descent_no" name="ethnic_risk" value="no">
-            <label for="descent_no">No</label>
-        </fieldset>
+    <div class="form-group">
+        <label for="ethnic_risk">Are you of African, Mediterranean, Middle Eastern, or Southeast Asian descent?</label><br>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="ethnic_risk" id="ethnic_risk_yes" value="yes" {% if ethnic_risk %}checked{% endif %}>
+            <label class="form-check-label" for="ethnic_risk_yes">Yes</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="ethnic_risk" id="ethnic_risk_no" value="no" {% if ethnic_risk is not None and not ethnic_risk %}checked{% endif %}>
+            <label class="form-check-label" for="ethnic_risk_no">No</label>
+        </div>
+    </div>
 
-        <br>
-        <input type="submit" value="Submit">
-    </form>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
 </body>
 </html>

@@ -381,22 +381,52 @@ def contact_view(request):
 
     return render(request, 'index.html')
 
+from django.shortcuts import render, redirect
+from .models import G6PDAssessment
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
 @login_required(login_url='/login/')
 def submit_assessment(request):
+    # Try to get the user's latest assessment if it exists
+    existing_assessment = G6PDAssessment.objects.filter(user=request.user).last()
+    
     if request.method == 'POST':
+        # Get data from form submission
         family_history = request.POST.get('family_history') == 'yes'
         close_relatives = request.POST.get('close_relatives') == 'yes'
         weakness_fatigue = request.POST.get('weakness_fatigue') == 'yes'
         jaundice = request.POST.get('jaundice') == 'yes'
         ethnic_risk = request.POST.get('ethnic_risk') == 'yes'
-        G6PDAssessment.objects.create(
-            user=request.user,
-            family_history=family_history,
-            close_relatives=close_relatives,
-            weakness_fatigue=weakness_fatigue,
-            jaundice=jaundice,
-            ethnic_risk=ethnic_risk,
-        )
+        
+        # Update the existing assessment or create a new one
+        if existing_assessment:
+            existing_assessment.family_history = family_history
+            existing_assessment.close_relatives = close_relatives
+            existing_assessment.weakness_fatigue = weakness_fatigue
+            existing_assessment.jaundice = jaundice
+            existing_assessment.ethnic_risk = ethnic_risk
+            existing_assessment.save()
+        else:
+            G6PDAssessment.objects.create(
+                user=request.user,
+                family_history=family_history,
+                close_relatives=close_relatives,
+                weakness_fatigue=weakness_fatigue,
+                jaundice=jaundice,
+                ethnic_risk=ethnic_risk,
+            )
+        
         messages.success(request, "Your assessment has been submitted successfully.")
         return redirect('home')
-    return render(request, 'form.html')
+    
+    # Prepopulate the form with the user's previous assessment data
+    context = {
+        'family_history': existing_assessment.family_history if existing_assessment else None,
+        'close_relatives': existing_assessment.close_relatives if existing_assessment else None,
+        'weakness_fatigue': existing_assessment.weakness_fatigue if existing_assessment else None,
+        'jaundice': existing_assessment.jaundice if existing_assessment else None,
+        'ethnic_risk': existing_assessment.ethnic_risk if existing_assessment else None,
+    }
+    
+    return render(request, 'form.html', context)
