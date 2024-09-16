@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G6PD Deficiency Self-Assessment Checklist</title>
+</head>
+<body>
+    <h2>G6PD Deficiency Self-Assessment Checklist</h2>
+    <p>Answer the questions below to check if you are at risk of G6PD deficiency.</p>
+
+    <form action="{% url 'submit-assessment' %}" method="POST">
+        {% csrf_token %}
+        <!-- Family History -->
+        <fieldset>
+            <legend>Family History</legend>
+            
+            <p>Do you have a family history of G6PD deficiency?</p>
+            <input type="radio" id="family_yes" name="family_history" value="yes">
+            <label for="family_yes">Yes</label><br>
+            <input type="radio" id="family_no" name="family_history" value="no">
+            <label for="family_no">No</label><br><br>
+
+            <p>Do any close relatives suffer from G6PD deficiency?</p>
+            <input type="radio" id="relatives_yes" name="close_relatives" value="yes">
+            <label for="relatives_yes">Yes</label><br>
+            <input type="radio" id="relatives_no" name="close_relatives" value="no">
+            <label for="relatives_no">No</label>
+        </fieldset>
+
+        <!-- Symptoms -->
+        <fieldset>
+            <legend>Symptoms</legend>
+            
+            <p>Do you feel weak or fatigued after eating certain foods (like fava beans)?</p>
+            <input type="radio" id="weakness_yes" name="weakness_fatigue" value="yes">
+            <label for="weakness_yes">Yes</label><br>
+            <input type="radio" id="weakness_no" name="weakness_fatigue" value="no">
+            <label for="weakness_no">No</label><br><br>
+
+            <p>Have you ever experienced jaundice (yellowing of the skin and eyes)?</p>
+            <input type="radio" id="jaundice_yes" name="jaundice" value="yes">
+            <label for="jaundice_yes">Yes</label><br>
+            <input type="radio" id="jaundice_no" name="jaundice" value="no">
+            <label for="jaundice_no">No</label>
+        </fieldset>
+
+        <!-- Geographical/Ethnic Risk Factors -->
+        <fieldset>
+            <legend>Geographical/Ethnic Risk Factors</legend>
+            
+            <p>Are you of African, Mediterranean, Middle Eastern, or Southeast Asian descent?</p>
+            <input type="radio" id="descent_yes" name="ethnic_risk" value="yes">
+            <label for="descent_yes">Yes</label><br>
+            <input type="radio" id="descent_no" name="ethnic_risk" value="no">
+            <label for="descent_no">No</label>
+        </fieldset>
+
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

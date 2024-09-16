@@ -9,6 +9,8 @@ from PIL import Image
 from .models import Contact
 from django.contrib import messages
 import easyocr
+from .models import G6PDAssessment
+from django.contrib.auth.decorators import login_required
 
 reader = easyocr.Reader(['en'])
 
@@ -242,25 +244,6 @@ PRODUCT_INGREDIENTS = {
 def index_view(request):
     return render(request, 'index.html')
 
-def about_view(request):
-    return render(request, 'about.html')
-
-def emergency_view(request):
-    return render(request, 'emergency-care.html')
-
-def avoid_view(request):
-    return render(request, 'foods-to-avoid.html')
-
-def info_view(request):
-    return render(request, 'info.html')
-
-def symptoms_view(request):
-    return render(request, 'symptoms.html')
-
-
-def triggers_view(request):
-    return render(request, 'triggers.html')
-
 class UserRegisterView(View):
     def get(self, request):
         form = UserRegistrationForm()
@@ -299,6 +282,8 @@ def user_images(request):
     return render(request, 'scanned.html', {'images': images})
 
 
+def selfcare_view(request):
+    return render(request, 'selfcare.html')
 
 def selfcare_view(request):
     if request.method == 'POST' and request.FILES.get('product_image'):
@@ -395,3 +380,23 @@ def contact_view(request):
         return redirect('home')
 
     return render(request, 'index.html')
+
+@login_required(login_url='/login/')
+def submit_assessment(request):
+    if request.method == 'POST':
+        family_history = request.POST.get('family_history') == 'yes'
+        close_relatives = request.POST.get('close_relatives') == 'yes'
+        weakness_fatigue = request.POST.get('weakness_fatigue') == 'yes'
+        jaundice = request.POST.get('jaundice') == 'yes'
+        ethnic_risk = request.POST.get('ethnic_risk') == 'yes'
+        G6PDAssessment.objects.create(
+            user=request.user,
+            family_history=family_history,
+            close_relatives=close_relatives,
+            weakness_fatigue=weakness_fatigue,
+            jaundice=jaundice,
+            ethnic_risk=ethnic_risk,
+        )
+        messages.success(request, "Your assessment has been submitted successfully.")
+        return redirect('home')
+    return render(request, 'form.html')

@@ -51,13 +51,6 @@
     <!-- Main Content -->
     <!-- =============================================== -->
     <main class="main" id="top">
-      {% comment %} {% if messages %}
-        <div class="alert-container">
-          {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
-          {% endfor %}
-        </div>
-      {% endif %} {% endcomment %}
       <nav class="navbar navbar-expand-lg navbar-light bg-light py-3 d-block text-secondary fixed-top" data-navbar-on-scroll="data-navbar-on-scroll">
         <div class="container">
           <a class="navbar-brand" href="index.html"><h1 class="fw-light font-base fs-6 fs-xxl-7"><strong>G6PD</strong></h1></a>
@@ -194,6 +187,13 @@
           </div>
         </div>
       </nav>
+      {% if messages %}
+        <div class="alert alert-dismissible fade show">
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
       <section class="py-xxl-10 pb-0" id="home">
         <div class="bg-holder bg-size" style="
     background-image: url({% static 'img/gallery/hero-bg.png' %});
@@ -210,7 +210,7 @@
             <div class="col-md-75 col-xl-6 col-xxl-5 text-md-start text-center py-6">
               <h1 class="fw-light font-base fs-6 fs-xxl-7">The <strong>G6PD Deficiency</strong> awareness for<br />your&nbsp;<strong>better life.</strong></h1>
               <p class="fs-1 mb-3">You can get the care you need 24/7 – be it online.</p>
-              <a class="btn btn-lg btn-danger rounded-pill" href="#!" role="button">Self-Assessment Form</a>
+              <a class="btn btn-lg btn-danger rounded-pill" href="{% url 'submit-assessment' %}" role="button">Self-Assessment Form</a>
             </div>
           </div>
         </div>

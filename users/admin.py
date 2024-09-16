@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .forms import UserChangeForm, UserCreationForm
-from .models import User , Contact
+from .models import User , Contact, G6PDAssessment
 
 class CustomUserAdmin(UserAdmin):
     form = UserChangeForm
@@ -26,3 +26,4 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Contact)
+admin.site.register(G6PDAssessment)

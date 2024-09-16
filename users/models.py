@@ -26,3 +26,15 @@ class Contact(BasedModel):
 
     def __str__(self):
         return self.name
+
+
+class G6PDAssessment(BasedModel):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  
+    family_history = models.BooleanField()  
+    close_relatives = models.BooleanField()  
+    weakness_fatigue = models.BooleanField()  
+    jaundice = models.BooleanField() 
+    ethnic_risk = models.BooleanField() 
+
+    def __str__(self):
+        return f"Assessment for {self.user.email}"
