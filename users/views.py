@@ -387,6 +387,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 @login_required(login_url='/login/')
+
 def submit_assessment(request):
     # Try to get the user's latest assessment if it exists
     existing_assessment = G6PDAssessment.objects.filter(user=request.user).last()
@@ -397,7 +398,13 @@ def submit_assessment(request):
         close_relatives = request.POST.get('close_relatives') == 'yes'
         weakness_fatigue = request.POST.get('weakness_fatigue') == 'yes'
         jaundice = request.POST.get('jaundice') == 'yes'
+        dark_urine = request.POST.get('dark_urine') == 'yes'
+        eaten_fava_beans = request.POST.get('eaten_fava_beans') == 'yes'
+        medication_triggers = request.POST.getlist('medication_triggers')
         ethnic_risk = request.POST.get('ethnic_risk') == 'yes'
+        lived_in_malaria_region = request.POST.get('lived_in_malaria_region') == 'yes'
+        jaundiced_after_birth = request.POST.get('jaundiced_after_birth') == 'yes' if request.POST.get('is_infant') == 'yes' else None
+        required_phototherapy = request.POST.get('required_phototherapy') == 'yes' if request.POST.get('is_infant') == 'yes' else None
         
         # Update the existing assessment or create a new one
         if existing_assessment:
@@ -405,7 +412,13 @@ def submit_assessment(request):
             existing_assessment.close_relatives = close_relatives
             existing_assessment.weakness_fatigue = weakness_fatigue
             existing_assessment.jaundice = jaundice
+            existing_assessment.dark_urine = dark_urine
+            existing_assessment.eaten_fava_beans = eaten_fava_beans
+            existing_assessment.medication_triggers = medication_triggers
             existing_assessment.ethnic_risk = ethnic_risk
+            existing_assessment.lived_in_malaria_region = lived_in_malaria_region
+            existing_assessment.jaundiced_after_birth = jaundiced_after_birth
+            existing_assessment.required_phototherapy = required_phototherapy
             existing_assessment.save()
         else:
             G6PDAssessment.objects.create(
@@ -414,7 +427,13 @@ def submit_assessment(request):
                 close_relatives=close_relatives,
                 weakness_fatigue=weakness_fatigue,
                 jaundice=jaundice,
+                dark_urine=dark_urine,
+                eaten_fava_beans=eaten_fava_beans,
+                medication_triggers=medication_triggers,
                 ethnic_risk=ethnic_risk,
+                lived_in_malaria_region=lived_in_malaria_region,
+                jaundiced_after_birth=jaundiced_after_birth,
+                required_phototherapy=required_phototherapy,
             )
         
         messages.success(request, "Your assessment has been submitted successfully.")
@@ -426,7 +445,14 @@ def submit_assessment(request):
         'close_relatives': existing_assessment.close_relatives if existing_assessment else None,
         'weakness_fatigue': existing_assessment.weakness_fatigue if existing_assessment else None,
         'jaundice': existing_assessment.jaundice if existing_assessment else None,
+        'dark_urine': existing_assessment.dark_urine if existing_assessment else None,
+        'eaten_fava_beans': existing_assessment.eaten_fava_beans if existing_assessment else None,
+        'medication_triggers': existing_assessment.medication_triggers if existing_assessment else [],
         'ethnic_risk': existing_assessment.ethnic_risk if existing_assessment else None,
+        'lived_in_malaria_region': existing_assessment.lived_in_malaria_region if existing_assessment else None,
+        'jaundiced_after_birth': existing_assessment.jaundiced_after_birth if existing_assessment else None,
+        'required_phototherapy': existing_assessment.required_phototherapy if existing_assessment else None,
+        'is_infant': 'yes' if existing_assessment and existing_assessment.jaundiced_after_birth is not None else 'no',
     }
     
     return render(request, 'form.html', context)

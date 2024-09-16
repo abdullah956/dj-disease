@@ -28,13 +28,29 @@ class Contact(BasedModel):
         return self.name
 
 
-class G6PDAssessment(BasedModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)  
-    family_history = models.BooleanField()  
-    close_relatives = models.BooleanField()  
-    weakness_fatigue = models.BooleanField()  
-    jaundice = models.BooleanField() 
-    ethnic_risk = models.BooleanField() 
-
+class G6PDAssessment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    # Family History
+    family_history = models.BooleanField()
+    close_relatives = models.BooleanField()
+    
+    # Symptoms After Food or Medication
+    weakness_fatigue = models.BooleanField()
+    jaundice = models.BooleanField()
+    dark_urine = models.BooleanField()
+    
+    # Exposure to Known Triggers
+    eaten_fava_beans = models.BooleanField()
+    medication_triggers = models.JSONField()  # List of medications taken
+    
+    # Geographic and Ethnic Risk Factors
+    ethnic_risk = models.BooleanField()
+    lived_in_malaria_region = models.BooleanField()
+    
+    # Symptoms in Infants (If applicable)
+    jaundiced_after_birth = models.BooleanField(null=True, blank=True)
+    required_phototherapy = models.BooleanField(null=True, blank=True)
+    
     def __str__(self):
         return f"Assessment for {self.user.email}"
