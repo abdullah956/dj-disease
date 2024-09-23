@@ -5,170 +5,264 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>G6PD Deficiency Self-Assessment Checklist</title>
       <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body>
-    <h2>G6PD Deficiency Self-Assessment Checklist</h2>
-    <p>Answer the questions below to check if you are at risk of G6PD deficiency.</p>
+<body class="bg-light" >
 
-    <form action="{% url 'submit-assessment' %}" method="POST" class="container mt-4">
-        {% csrf_token %}
 
-        <!-- Family History -->
-        <div class="form-group">
-            <label for="family_history">Do you have a family history of G6PD deficiency?</label><br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="family_history" id="family_history_yes" value="yes" {% if family_history %}checked{% endif %}>
-                <label class="form-check-label" for="family_history_yes">Yes</label>
+    <!-- Bootstrap Modal for displaying messages -->
+<div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="feedbackModalLabel">Feedback</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="family_history" id="family_history_no" value="no" {% if family_history is not None and not family_history %}checked{% endif %}>
-                <label class="form-check-label" for="family_history_no">No</label>
+            <div class="modal-body" id="feedbackModalBody">
+                <!-- Message will be injected here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
         </div>
-
-        <div class="form-group">
-            <label for="close_relatives">Do any close relatives suffer from G6PD deficiency?</label><br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="close_relatives" id="close_relatives_yes" value="yes" {% if close_relatives %}checked{% endif %}>
-                <label class="form-check-label" for="close_relatives_yes">Yes</label>
+    </div>
+</div>
+<!-- Bootstrap Modal for displaying messages -->
+<div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="feedbackModalLabel">Feedback</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="close_relatives" id="close_relatives_no" value="no" {% if close_relatives is not None and not close_relatives %}checked{% endif %}>
-                <label class="form-check-label" for="close_relatives_no">No</label>
+            <div class="modal-body" id="feedbackModalBody">
+                <!-- Message will be injected here -->
             </div>
-        </div>
-
-        <!-- Symptoms After Food or Medication -->
-        <div class="form-group">
-            <label for="weakness_fatigue">Do you feel weak or fatigued after eating certain foods?</label><br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="weakness_fatigue" id="weakness_fatigue_yes" value="yes" {% if weakness_fatigue %}checked{% endif %}>
-                <label class="form-check-label" for="weakness_fatigue_yes">Yes</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="weakness_fatigue" id="weakness_fatigue_no" value="no" {% if weakness_fatigue is not None and not weakness_fatigue %}checked{% endif %}>
-                <label class="form-check-label" for="weakness_fatigue_no">No</label>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
+    </div>
+</div>
 
-        <div class="form-group">
-            <label for="jaundice">Have you ever experienced jaundice?</label><br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="jaundice" id="jaundice_yes" value="yes" {% if jaundice %}checked{% endif %}>
-                <label class="form-check-label" for="jaundice_yes">Yes</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="jaundice" id="jaundice_no" value="no" {% if jaundice is not None and not jaundice %}checked{% endif %}>
-                <label class="form-check-label" for="jaundice_no">No</label>
-            </div>
-        </div>
 
-        <!-- Dark Urine -->
-        <div class="form-group">
-            <label for="dark_urine">Have you experienced dark-colored urine after consuming certain foods or medications?</label><br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="dark_urine" id="dark_urine_yes" value="yes" {% if dark_urine %}checked{% endif %}>
-                <label class="form-check-label" for="dark_urine_yes">Yes</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="dark_urine" id="dark_urine_no" value="no" {% if dark_urine is not None and not dark_urine %}checked{% endif %}>
-                <label class="form-check-label" for="dark_urine_no">No</label>
-            </div>
-        </div>
 
-        <!-- Exposure to Known Triggers -->
-        <div class="form-group">
-            <label for="eaten_fava_beans">Have you eaten fava beans (or broad beans) and experienced symptoms like fatigue, jaundice, or dark-colored urine?</label><br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="eaten_fava_beans" id="eaten_fava_beans_yes" value="yes" {% if eaten_fava_beans %}checked{% endif %}>
-                <label class="form-check-label" for="eaten_fava_beans_yes">Yes</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="eaten_fava_beans" id="eaten_fava_beans_no" value="no" {% if eaten_fava_beans is not None and not eaten_fava_beans %}checked{% endif %}>
-                <label class="form-check-label" for="eaten_fava_beans_no">No</label>
-            </div>
-        </div>
+    
+    <div class="container-fluid p-5 bg-danger text-white text-center">
+        <h4>Important Notice</h4>
+        <p>This self-assessment form is designed to help you assess your risk for G6PD deficiency. However, it is not a substitute for a professional medical diagnosis. Only a blood test performed by a healthcare provider can definitively diagnose G6PD deficiency. If you believe you are at risk, please consult a doctor for further testing and advice</p>
+    </div>
+    
+    <div class="container text-center text-danger m-4" >
+        <h2>G6PD Deficiency Self-Assessment Checklist</h2>
+        <p>Answer the questions below to check if you are at risk of G6PD deficiency.</p>
 
-        <div class="form-group">
-            <label for="medication_triggers">Have you taken any of the following medications and experienced similar symptoms afterward? (Check all that apply)</label><br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="medication_triggers" id="aspirin" value="Aspirin" {% if 'Aspirin' in medication_triggers %}checked{% endif %}>
-                <label class="form-check-label" for="aspirin">Aspirin</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="medication_triggers" id="antimalarial" value="Antimalarial drugs" {% if 'Antimalarial drugs' in medication_triggers %}checked{% endif %}>
-                <label class="form-check-label" for="antimalarial">Antimalarial drugs (e.g., Primaquine)</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="medication_triggers" id="sulfa_drugs" value="Sulfa drugs" {% if 'Sulfa drugs' in medication_triggers %}checked{% endif %}>
-                <label class="form-check-label" for="sulfa_drugs">Sulfa drugs (e.g., Sulfamethoxazole)</label>
-            </div>
-        </div>
+    </div>
 
-        <!-- Geographic and Ethnic Risk Factors -->
-        <div class="form-group">
-            <label for="ethnic_risk">Are you of African, Mediterranean, Middle Eastern, or Southeast Asian descent?</label><br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="ethnic_risk" id="ethnic_risk_yes" value="yes" {% if ethnic_risk %}checked{% endif %}>
-                <label class="form-check-label" for="ethnic_risk_yes">Yes</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="ethnic_risk" id="ethnic_risk_no" value="no" {% if ethnic_risk is not None and not ethnic_risk %}checked{% endif %}>
-                <label class="form-check-label" for="ethnic_risk_no">No</label>
-            </div>
-        </div>
 
-        <div class="form-group">
-            <label for="lived_in_malaria_region">Have you lived in a region where malaria is or was common?</label><br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="lived_in_malaria_region" id="lived_in_malaria_region_yes" value="yes" {% if lived_in_malaria_region %}checked{% endif %}>
-                <label class="form-check-label" for="lived_in_malaria_region_yes">Yes</label>
+    <div class="container p-4 border mb-4">
+        <form action="{% url 'submit-assessment' %}" method="POST" class="container mt-4">
+            {% csrf_token %}
+    
+            <!-- Family History -->
+            <div class="form-group">
+                <label for="family_history">Do you have a family history of G6PD deficiency?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="family_history" id="family_history_yes" value="yes" {% if family_history %}checked{% endif %}>
+                    <label class="form-check-label" for="family_history_yes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="family_history" id="family_history_no" value="no" {% if family_history is not None and not family_history %}checked{% endif %}>
+                    <label class="form-check-label" for="family_history_no">No</label>
+                </div>
             </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="lived_in_malaria_region" id="lived_in_malaria_region_no" value="no" {% if lived_in_malaria_region is not None and not lived_in_malaria_region %}checked{% endif %}>
-                <label class="form-check-label" for="lived_in_malaria_region_no">No</label>
+    
+            <div class="form-group">
+                <label for="close_relatives">Do any close relatives suffer from G6PD deficiency?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="close_relatives" id="close_relatives_yes" value="yes" {% if close_relatives %}checked{% endif %}>
+                    <label class="form-check-label" for="close_relatives_yes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="close_relatives" id="close_relatives_no" value="no" {% if close_relatives is not None and not close_relatives %}checked{% endif %}>
+                    <label class="form-check-label" for="close_relatives_no">No</label>
+                </div>
             </div>
-        </div>
+    
+            <!-- Symptoms After Food or Medication -->
+            <div class="form-group">
+                <label for="weakness_fatigue">Do you feel weak or fatigued after eating certain foods?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="weakness_fatigue" id="weakness_fatigue_yes" value="yes" {% if weakness_fatigue %}checked{% endif %}>
+                    <label class="form-check-label" for="weakness_fatigue_yes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="weakness_fatigue" id="weakness_fatigue_no" value="no" {% if weakness_fatigue is not None and not weakness_fatigue %}checked{% endif %}>
+                    <label class="form-check-label" for="weakness_fatigue_no">No</label>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="jaundice">Have you ever experienced jaundice?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="jaundice" id="jaundice_yes" value="yes" {% if jaundice %}checked{% endif %}>
+                    <label class="form-check-label" for="jaundice_yes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="jaundice" id="jaundice_no" value="no" {% if jaundice is not None and not jaundice %}checked{% endif %}>
+                    <label class="form-check-label" for="jaundice_no">No</label>
+                </div>
+            </div>
+    
+            <!-- Dark Urine -->
+            <div class="form-group">
+                <label for="dark_urine">Have you experienced dark-colored urine after consuming certain foods or medications?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="dark_urine" id="dark_urine_yes" value="yes" {% if dark_urine %}checked{% endif %}>
+                    <label class="form-check-label" for="dark_urine_yes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="dark_urine" id="dark_urine_no" value="no" {% if dark_urine is not None and not dark_urine %}checked{% endif %}>
+                    <label class="form-check-label" for="dark_urine_no">No</label>
+                </div>
+            </div>
+    
+            <!-- Exposure to Known Triggers -->
+            <div class="form-group">
+                <label for="eaten_fava_beans">Have you eaten fava beans (or broad beans) and experienced symptoms like fatigue, jaundice, or dark-colored urine?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="eaten_fava_beans" id="eaten_fava_beans_yes" value="yes" {% if eaten_fava_beans %}checked{% endif %}>
+                    <label class="form-check-label" for="eaten_fava_beans_yes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="eaten_fava_beans" id="eaten_fava_beans_no" value="no" {% if eaten_fava_beans is not None and not eaten_fava_beans %}checked{% endif %}>
+                    <label class="form-check-label" for="eaten_fava_beans_no">No</label>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="medication_triggers">Have you taken any of the following medications and experienced similar symptoms afterward? (Check all that apply)</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="medication_triggers" id="aspirin" value="Aspirin" {% if 'Aspirin' in medication_triggers %}checked{% endif %}>
+                    <label class="form-check-label" for="aspirin">Aspirin</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="medication_triggers" id="antimalarial" value="Antimalarial drugs" {% if 'Antimalarial drugs' in medication_triggers %}checked{% endif %}>
+                    <label class="form-check-label" for="antimalarial">Antimalarial drugs (e.g., Primaquine)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="medication_triggers" id="sulfa_drugs" value="Sulfa drugs" {% if 'Sulfa drugs' in medication_triggers %}checked{% endif %}>
+                    <label class="form-check-label" for="sulfa_drugs">Sulfa drugs (e.g., Sulfamethoxazole)</label>
+                </div>
+            </div>
+    
+            <!-- Geographic and Ethnic Risk Factors -->
+            <div class="form-group">
+                <label for="ethnic_risk">Are you of African, Mediterranean, Middle Eastern, or Southeast Asian descent?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ethnic_risk" id="ethnic_risk_yes" value="yes" {% if ethnic_risk %}checked{% endif %}>
+                    <label class="form-check-label" for="ethnic_risk_yes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="ethnic_risk" id="ethnic_risk_no" value="no" {% if ethnic_risk is not None and not ethnic_risk %}checked{% endif %}>
+                    <label class="form-check-label" for="ethnic_risk_no">No</label>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="lived_in_malaria_region">Have you lived in a region where malaria is or was common?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="lived_in_malaria_region" id="lived_in_malaria_region_yes" value="yes" {% if lived_in_malaria_region %}checked{% endif %}>
+                    <label class="form-check-label" for="lived_in_malaria_region_yes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="lived_in_malaria_region" id="lived_in_malaria_region_no" value="no" {% if lived_in_malaria_region is not None and not lived_in_malaria_region %}checked{% endif %}>
+                    <label class="form-check-label" for="lived_in_malaria_region_no">No</label>
+                </div>
+            </div>
+    
+            <!-- Symptoms in Infants (If applicable) -->
+            <div class="form-group">
+                <label for="is_infant">Is the assessment for an infant?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="is_infant" id="is_infant_yes" value="yes" {% if is_infant == 'yes' %}checked{% endif %}>
+                    <label class="form-check-label" for="is_infant_yes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="is_infant" id="is_infant_no" value="no" {% if is_infant == 'no' %}checked{% endif %}>
+                    <label class="form-check-label" for="is_infant_no">No</label>
+                </div>
+            </div>
+    
+            <div class="form-group" id="infant_symptoms" {% if is_infant == 'no' %}style="display:none;"{% endif %}>
+                <label for="jaundiced_after_birth">Was the newborn jaundiced (yellow skin) shortly after birth?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="jaundiced_after_birth" id="jaundiced_after_birth_yes" value="yes" {% if jaundiced_after_birth %}checked{% endif %}>
+                    <label class="form-check-label" for="jaundiced_after_birth_yes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="jaundiced_after_birth" id="jaundiced_after_birth_no" value="no" {% if jaundiced_after_birth is not None and not jaundiced_after_birth %}checked{% endif %}>
+                    <label class="form-check-label" for="jaundiced_after_birth_no">No</label>
+                </div>
+            </div>
+    
+            <div class="form-group" id="infant_phototherapy" {% if is_infant == 'no' %}style="display:none;"{% endif %}>
+                <label for="required_phototherapy">Did the newborn require treatment like phototherapy for jaundice?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="required_phototherapy" id="required_phototherapy_yes" value="yes" {% if required_phototherapy %}checked{% endif %}>
+                    <label class="form-check-label" for="required_phototherapy_yes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="required_phototherapy" id="required_phototherapy_no" value="no" {% if required_phototherapy is not None and not required_phototherapy %}checked{% endif %}>
+                    <label class="form-check-label" for="required_phototherapy_no">No</label>
+                </div>
+            </div>
+    
+            <button type="submit" class="btn btn-danger">Submit</button>
+        </form>
 
-        <!-- Symptoms in Infants (If applicable) -->
-        <div class="form-group">
-            <label for="is_infant">Is the assessment for an infant?</label><br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="is_infant" id="is_infant_yes" value="yes" {% if is_infant == 'yes' %}checked{% endif %}>
-                <label class="form-check-label" for="is_infant_yes">Yes</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="is_infant" id="is_infant_no" value="no" {% if is_infant == 'no' %}checked{% endif %}>
-                <label class="form-check-label" for="is_infant_no">No</label>
-            </div>
-        </div>
 
-        <div class="form-group" id="infant_symptoms" {% if is_infant == 'no' %}style="display:none;"{% endif %}>
-            <label for="jaundiced_after_birth">Was the newborn jaundiced (yellow skin) shortly after birth?</label><br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="jaundiced_after_birth" id="jaundiced_after_birth_yes" value="yes" {% if jaundiced_after_birth %}checked{% endif %}>
-                <label class="form-check-label" for="jaundiced_after_birth_yes">Yes</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="jaundiced_after_birth" id="jaundiced_after_birth_no" value="no" {% if jaundiced_after_birth is not None and not jaundiced_after_birth %}checked{% endif %}>
-                <label class="form-check-label" for="jaundiced_after_birth_no">No</label>
-            </div>
-        </div>
+    </div>
 
-        <div class="form-group" id="infant_phototherapy" {% if is_infant == 'no' %}style="display:none;"{% endif %}>
-            <label for="required_phototherapy">Did the newborn require treatment like phototherapy for jaundice?</label><br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="required_phototherapy" id="required_phototherapy_yes" value="yes" {% if required_phototherapy %}checked{% endif %}>
-                <label class="form-check-label" for="required_phototherapy_yes">Yes</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="required_phototherapy" id="required_phototherapy_no" value="no" {% if required_phototherapy is not None and not required_phototherapy %}checked{% endif %}>
-                <label class="form-check-label" for="required_phototherapy_no">No</label>
-            </div>
-        </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    
+
+    
+
+    <script>
+        $(document).ready(function() {
+            const messages = {
+                'family_history': "If you answered 'Yes' to any of the family history questions, you may be at a higher genetic risk for G6PD deficiency. Family history is one of the key risk factors.",
+                'symptoms_section': "If you answered 'Yes' here, you may have had hemolytic episodes (red blood cell destruction) triggered by specific foods or medications, which are common in people with G6PD deficiency.",
+                'trigger_exposure': "Fava beans and certain medications are known triggers for hemolytic anemia in people with G6PD deficiency. If you have had symptoms after exposure to these, it is important to discuss with a healthcare provider.",
+                'ethnic_risk': "G6PD deficiency is more prevalent in people of African, Mediterranean, Middle Eastern, or Southeast Asian descent, particularly in areas where malaria is or was common. This could increase your risk.",
+                'infant_risk': "Newborns with G6PD deficiency may develop jaundice shortly after birth. If you answered 'Yes' to these questions about a newborn, it’s important to seek medical testing."
+            };
+    
+            $('input[type="radio"][value="yes"]').change(function() {
+                let questionGroup = $(this).attr('name');
+                if ($(this).is(':checked')) {
+                    $('#feedbackModalBody').text(messages[questionGroup]);
+                    $('#feedbackModal').modal('show');
+                }
+            });
+        });
+    </script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    
 
 </body>
 </html>
+
+
+
+
+
