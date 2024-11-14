@@ -8,11 +8,11 @@ from django.core.files.storage import default_storage
 from PIL import Image
 from .models import Contact
 from django.contrib import messages
-import easyocr
+# import easyocr
 from .models import G6PDAssessment
 from django.contrib.auth.decorators import login_required
 
-reader = easyocr.Reader(['en'])
+# reader = easyocr.Reader(['en'])
 
 PRODUCT_INGREDIENTS = {
     'alpro': {
@@ -324,45 +324,45 @@ def selfcare_view(request):
 
 
 
-def extract_product_name(image_path):
-    image = Image.open(image_path)
-    results = reader.readtext(image_path)
-    extracted_text = ' '.join([result[1].lower() for result in results])
-    print("extracted text:", extracted_text)
-    known_products = [
-    'alpro',
-    'grapefruit juice',
-    'greek yogurt',
-    'quest',
-    'shortbread',
-    'smilac',
-    'maggi',
-    'biscoff',
-    'digestive',
-    'haribo',
-    'guylian',
-    'toblerone',
-    'nescafe',
-    'pasta',
-    'blast 0 butter',
-    'popcorn',
-    'nutella',
-    'bites',
-    'bugles',
-    'sun bites',
-    'choco pops',
-    'skippy',
-    'cup cake',
-    'gerber organic baby food',
-    'four fruits',
-    'cheddar cheese',
-    'sue bee'
-]
-    extracted_prefix = extracted_text[:3]
-    for product in known_products:
-        if extracted_prefix == product[:3]:
-            return product.capitalize()
-    return 'Unknown Product'
+# def extract_product_name(image_path):
+#     image = Image.open(image_path)
+#     results = reader.readtext(image_path)
+#     extracted_text = ' '.join([result[1].lower() for result in results])
+#     print("extracted text:", extracted_text)
+#     known_products = [
+#     'alpro',
+#     'grapefruit juice',
+#     'greek yogurt',
+#     'quest',
+#     'shortbread',
+#     'smilac',
+#     'maggi',
+#     'biscoff',
+#     'digestive',
+#     'haribo',
+#     'guylian',
+#     'toblerone',
+#     'nescafe',
+#     'pasta',
+#     'blast 0 butter',
+#     'popcorn',
+#     'nutella',
+#     'bites',
+#     'bugles',
+#     'sun bites',
+#     'choco pops',
+#     'skippy',
+#     'cup cake',
+#     'gerber organic baby food',
+#     'four fruits',
+#     'cheddar cheese',
+#     'sue bee'
+# ]
+#     extracted_prefix = extracted_text[:3]
+#     for product in known_products:
+#         if extracted_prefix == product[:3]:
+#             return product.capitalize()
+#     return 'Unknown Product'
 
 
 def contact_view(request):
