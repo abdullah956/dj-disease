@@ -264,6 +264,13 @@ PRODUCT_INGREDIENTS = {
       "sugar": "40%",
       "cocoa": "15%"
     },
+    "princechocobiscuits": {
+    "wheatflour": "35%",
+    "sugar": "25%",
+    "vegetableoils": "15%",
+    "cocoa": "10%",
+    "milkpowder": "5%",
+    },
 }
 
 def index_view(request):
