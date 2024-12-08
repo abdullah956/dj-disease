@@ -238,7 +238,32 @@ PRODUCT_INGREDIENTS = {
     },
     'sue bee': {
         'Pure honey': '100%'
-    }
+    },
+     "peanutbuttercup": {
+      "peanuts": "50%",
+      "sugar": "30%",
+      "milk": "20%"
+    },
+    "soychocolate": {
+      "soybeans": "40%",
+      "cocoa": "30%",
+      "sugar": "30%"
+    },
+    "lentilsoup": {
+      "lentils": "70%",
+      "carrots": "20%",
+      "salt": "10%"
+    },
+    "favafalafel": {
+      "fava beans": "60%",
+      "onions": "30%",
+      "spices": "10%"
+    },
+    "hazelnutspread": {
+      "hazelnut cream": "45%",
+      "sugar": "40%",
+      "cocoa": "15%"
+    },
 }
 
 def index_view(request):
@@ -281,46 +306,94 @@ def user_images(request):
     images = ProductImage.objects.filter(user=request.user)
     return render(request, 'scanned.html', {'images': images})
 
-
 def selfcare_view(request):
-    return render(request, 'selfcare.html')
+    UNSAFE_INGREDIENTS = [
+        "fava beans", "chickpeas", "lentils", "beans", "soybeans",
+        "soy products", "lupines", "bitter gourd", "peanut butter",
+        "hazelnut cream", "sugar"
+    ]
 
-def selfcare_view(request):
     if request.method == 'POST' and request.FILES.get('product_image'):
         user = request.user
         product_name = request.POST.get('name')
-        product_image = ProductImage(user=user, name=product_name,image=request.FILES['product_image'])
+        product_image = ProductImage(user=user, name=product_name, image=request.FILES['product_image'])
         product_image.save()
-        #for name
+
         product_name_normalized = product_name.lower().replace(' ', '')
         ingredients = {key.replace(' ', '').lower(): value for key, value in PRODUCT_INGREDIENTS.items()}
         product_ingredients = ingredients.get(product_name_normalized, {})
+
         if product_ingredients:
             message = f"{product_name.title()}"
-            if any("sugar" in ingredient.lower() for ingredient in product_ingredients):
-                ingredient_message = "These ingredients contain sugar: " + ', '.join([f"{ingredient}: {percentage}" for ingredient, percentage in product_ingredients.items()])
-                ingredient_message1 = "These ingredients contain sugar (Not Safe to Consume)"
+            unsafe_items = {
+                ingredient: percentage for ingredient, percentage in product_ingredients.items()
+                if any(unsafe in ingredient.lower() for unsafe in UNSAFE_INGREDIENTS)
+            }
+
+            all_ingredients = ", ".join(
+                [f"{ingredient}: {percentage}" for ingredient, percentage in product_ingredients.items()]
+            )
+            if unsafe_items:
+                unsafe_ingredient_list = ", ".join(
+                    [f"{ingredient}: {percentage}" for ingredient, percentage in unsafe_items.items()]
+                )
+                ingredient_message = f"These ingredients are not safe to consume: {unsafe_ingredient_list}"
+                ingredient_message1 = "The product contains unsafe ingredients."
             else:
-                ingredient_message = "Major ingredients and percentages: " + ', '.join([f"{ingredient}: {percentage}" for ingredient, percentage in product_ingredients.items()])
-                ingredient_message1 = "These ingredients do not contain sugar (Safe to Consume)"
-            return render(request, 'result.html', {'message': message, 'ingredients': ingredient_message, 'ingredients1' : ingredient_message1})
+                ingredient_message = "This product does not contain unsafe ingredients (Safe to Consume)."
+                ingredient_message1 = ""
+
+            return render(request, 'result.html', {
+                'message': message,
+                'all_ingredients': all_ingredients,
+                'ingredient_message': ingredient_message,
+                'ingredient_message1': ingredient_message1,
+                'unsafe_items': unsafe_items
+            })
         else:
             message = f"{product_name.title()} information not available."
             ingredient_message = "Ingredient information is not available."
-        return render(request, 'result.html', {'message': message, 'ingredients': ingredient_message})
-        #for images
-        image_path = default_storage.path(product_image.image.name)
-        product_name = extract_product_name(image_path)
-        product_name_formatted = product_name.title()
-        ingredients = PRODUCT_INGREDIENTS.get(product_name_formatted, {})
-        if ingredients:
-            message = f"Warning: {product_name} contains sugar."
-            ingredient_message = "Major ingredients and percentages: " + ', '.join([f"{ingredient}: {percentage}" for ingredient, percentage in ingredients.items()])
-        else:
-            message = f"{product_name} information not available."
-            ingredient_message = "Ingredients information is not available."
-        return render(request, 'result.html', {'message': message, 'ingredients': ingredient_message})
+            return render(request, 'result.html', {'message': message, 'ingredient_message': ingredient_message})
+
+    # Render the form page for non-POST requests
     return render(request, 'selfcare.html')
+
+# def selfcare_view(request):
+#     if request.method == 'POST' and request.FILES.get('product_image'):
+#         user = request.user
+#         product_name = request.POST.get('name')
+#         product_image = ProductImage(user=user, name=product_name,image=request.FILES['product_image'])
+#         product_image.save()
+#         #for name
+#         product_name_normalized = product_name.lower().replace(' ', '')
+#         ingredients = {key.replace(' ', '').lower(): value for key, value in PRODUCT_INGREDIENTS.items()}
+#         product_ingredients = ingredients.get(product_name_normalized, {})
+#         if product_ingredients:
+#             message = f"{product_name.title()}"
+#             if any("sugar" in ingredient.lower() for ingredient in product_ingredients):
+#                 ingredient_message = "These ingredients contain sugar: " + ', '.join([f"{ingredient}: {percentage}" for ingredient, percentage in product_ingredients.items()])
+#                 ingredient_message1 = "These ingredients contain sugar (Not Safe to Consume)"
+#             else:
+#                 ingredient_message = "Major ingredients and percentages: " + ', '.join([f"{ingredient}: {percentage}" for ingredient, percentage in product_ingredients.items()])
+#                 ingredient_message1 = "These ingredients do not contain sugar (Safe to Consume)"
+#             return render(request, 'result.html', {'message': message, 'ingredients': ingredient_message, 'ingredients1' : ingredient_message1})
+#         else:
+#             message = f"{product_name.title()} information not available."
+#             ingredient_message = "Ingredient information is not available."
+#         return render(request, 'result.html', {'message': message, 'ingredients': ingredient_message})
+        #for images
+    #     image_path = default_storage.path(product_image.image.name)
+    #     product_name = extract_product_name(image_path)
+    #     product_name_formatted = product_name.title()
+    #     ingredients = PRODUCT_INGREDIENTS.get(product_name_formatted, {})
+    #     if ingredients:
+    #         message = f"Warning: {product_name} contains sugar."
+    #         ingredient_message = "Major ingredients and percentages: " + ', '.join([f"{ingredient}: {percentage}" for ingredient, percentage in ingredients.items()])
+    #     else:
+    #         message = f"{product_name} information not available."
+    #         ingredient_message = "Ingredients information is not available."
+    #     return render(request, 'result.html', {'message': message, 'ingredients': ingredient_message})
+    # return render(request, 'selfcare.html')
 
 
 
