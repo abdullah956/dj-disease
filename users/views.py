@@ -264,7 +264,7 @@ PRODUCT_INGREDIENTS = {
       "sugar": "40%",
       "cocoa": "15%"
     },
-    "princechocobiscuits": {
+    "prince": {
     "wheatflour": "35%",
     "sugar": "25%",
     "vegetableoils": "15%",
