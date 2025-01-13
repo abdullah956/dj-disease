@@ -1,1 +1,1 @@
-# dj-disease
+# dj-g6pd
